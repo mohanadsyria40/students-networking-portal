@@ -15,11 +15,12 @@
                 <nav class="navigation hide" id="navigation">
                     <span class="close-icon" onclick="hideNav()"><i class="fa fa-close"></i></span>
                     <ul class="nav-list">
+                        
                         <li class="nav-item">
-                            <a href="">Home</a>
+                            <a href="threads.html">Posts</a>
                         </li>
                         <li class="nav-item">
-                            <a href="">Forum</a>
+                            <a href="forum.html">Forum</a>
                         </li>
                         <li class="nav-item">
                             <a href="">Home</a>
@@ -28,6 +29,19 @@
                 </nav>
                 <a href="#" class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
                 <div class="brand">IŞIKunSt-Hub</div>
+            </div>
+            <!-- Search bar -->
+            <div class="search-bar">
+                <div>
+                   <select>
+                        <option value="all">All content</option>
+                        <option value="titles">Titles</option>
+                        <option value="descriptions">Descriptions</option>
+                   </select> 
+                   <input type="text" name="q" placeholder="What are you looking for?">
+                   <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+
             </div>
         </header>
         <div class="container">
@@ -133,8 +147,25 @@
                 <hr class="subforum-divider"> 
             </div>
         </div>
+
+        <!-- Forum footer -->
+        <div class="forum-info">
+            <div class="state">
+                IŞIKunSt-Hub &nbsp;<i class="fa-solid fa-lightbulb" style="color: #0d3982;"></i>
+            </div>
+            <div>
+                <span> <u>.....</u> Posts in <u>.....</u> Topics by <u>.....</u> Users</span><br>
+                <span>Latests Thread: <strong><a href="">title</a></strong> on 00/00/0000 by <strong><a href="">User</a></strong></span>
+            </div>
+        </div>
+        <div>
+            <footer>
+                <span>&copy; &nbsp; Işık University | All rights reserved </span>
+            </footer>
+        </div>
         
         
-        <script src="../js/main.js"></script>
+       
+        <script src="../js/main.js"></script> 
     </body>
 </html>

@@ -253,3 +253,272 @@ header{
         font-family: barrio;
     }
 }
+
+
+/* search bar */
+
+
+.search-bar{
+    border: solid 1px#0d3982;
+    margin-top: 20px;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 1px 2px 3px #0d3982 ;
+}
+
+.search-bar select{
+    padding: 10px;
+}
+
+.search-bar input{
+    padding: 10px;
+}
+
+.search-bar button{
+    padding: 10px;
+    background-color: #0d3982;
+}
+
+.search-bar button i{
+    color: white;
+}
+
+.search-bar button:hover{
+    background-color: gray;
+    color: white;
+    box-shadow: 1px 2px 3px #0d3982;
+}
+
+
+/* search bar for smartphones */
+@media screen and (max-width: 460px){
+    .search-bar button, .search-bar input, .search-bar select{
+        min-width: 300px;
+        margin-top: 5px;
+    }
+}
+
+
+/* forum information */
+
+.forum-info{
+    padding: 20px;
+    background-color: gray;
+    color: white;
+}
+
+.state{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* footer */
+
+footer{
+    margin-top: 20px;
+    padding: 20px;
+    display: block;
+    text-align: center;
+    background-color: #0d3982;
+    color: white;
+}
+
+
+/* ********************************** */
+/* posts page */
+
+
+.table-head{
+    display: flex;   
+}
+
+.table-head div{
+    padding: 5px;
+    margin: 2px;
+    background-color: #0d3982;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.table-head .status{
+    flex: 5%;
+}
+
+.table-head .subjects{
+    flex: 70%;
+}
+
+.table-head .replies{
+    flex: 10%;
+}
+
+.table-head .last-reply{
+    flex: 15%;
+}
+
+/* table body */
+.table-row{
+    display: flex;
+}
+
+.table-row .status, .table-row .subjects, .table-row .replies, .table-row .last-reply{
+    padding:5px;
+    margin: 2px;
+    background-color: rgb(180, 177, 177);
+    border-radius: 5px;
+}
+
+.table-row .status{
+    flex: 5%;
+    font-size: 30px;
+    text-align: center;
+}
+
+.table-row .subjects{
+    flex: 70%;
+}
+
+
+.table-row .subjects a{
+    color: black;
+}
+
+.table-row .replies{
+    flex: 10%;
+}
+
+
+.table-row .last-reply{
+    flex: 15%;
+}
+
+
+
+/* pagination */
+.pagination{
+    padding: 20px;
+    font-size: 15px;
+}
+
+.pagination a{
+    color: #0d3982;
+    margin-inline: 5px;
+    padding: 5px 10px;
+    border: solid 0.5px #0d3982;
+}
+
+.pagination a:hover{
+    background-color: gray;
+    opacity: 0.5;
+}
+
+
+/* navigation */
+.posts-navigate{
+    margin-block: 20px;
+    font-weight: lighter;
+    font-size: 24px;
+}
+
+.posts-navigate a{
+    color: black;
+}
+
+.posts-navigate a:hover{
+    color: #0d3982;
+}
+
+
+/* status notes */
+.status-note{
+    padding: 20px;
+    display: block;
+    margin-bottom: 15px;
+    border: solid 0.5px #0d3982;
+}
+
+.status-note span{
+    font-size: 20px;
+    margin-block: 5px;
+}
+
+
+/* posts page */
+.head{
+    display: flex;
+    background-color: #0d3982;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.authors{
+    flex: 20%;
+}
+
+.post-content{
+    flex: 80%;
+}
+
+.body{
+    display: flex;
+    background-color: gray;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.body .authors .post-content{
+    font-size: 20px;
+}
+
+.body .post-content hr{
+    color: black;
+}
+
+.body .authors img{
+    max-width: 50px;
+    max-height: 80px;
+}
+
+.body .post-content .comment button{
+    border: none;
+    padding: 10px;
+    font-weight: bolder;
+    box-shadow: 4px 6px black;
+    cursor: pointer;
+    float: right;
+}
+
+
+/* comment are */
+
+.comment-area{
+    margin-top: 50px;
+}
+
+.comment-area textarea{
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    margin-block: 10px ;
+}
+
+.comment-area input{
+    float: right;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.comment-area input:hover{
+    border: solid 1px black;
+}
+
+.comments-container{
+    margin-top: 50px;
+}
