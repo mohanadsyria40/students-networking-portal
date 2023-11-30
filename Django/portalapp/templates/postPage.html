@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../static/style.css">
+        <script src="https://kit.fontawesome.com/afee173c1f.js" crossorigin="anonymous"></script>
+        <title>IsikUnStHub</title>
+    </head>
+    <body>
+        <header>
+            <div class="navbar">
+                <nav class="navigation hide" id="navigation">
+                    <span class="close-icon" onclick="hideNav()"><i class="fa fa-close"></i></span>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="threads.html">Posts</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="forum.html">Forum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="">Home</a>
+                        </li>
+                    </ul>
+                </nav>
+                <a href="#" class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
+                <div class="brand">IŞIKunSt-Hub</div>
+            </div>
+            <!-- Search bar -->
+            <div class="search-bar">
+                <div>
+                   <select>
+                        <option value="all">All content</option>
+                        <option value="titles">Titles</option>
+                        <option value="descriptions">Descriptions</option>
+                   </select> 
+                   <input type="text" name="q" placeholder="What are you looking for?">
+                   <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="posts-navigate">
+                <span><em><a href="#">All threads</a></em>>><em><a href="#">Random Thread</a></em>>><em><a href="#">Random Post</a></em></span>
+            </div>
+            <div class="topic-container">
+                <div class="head">
+                    <div class="authors">Author</div>
+                    <div class="post-content">Post title: title(Read 1234 times)</div>
+                </div>
+                <div class="body">
+                    <div class="authors">
+                        <div class="username"><a href="#">Username</a></div>
+                        <div>Role</div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRudDbHeW2OobhX8E9fAY-ctpUAHeTNWfaqJA&usqp=CAU" alt="a profile photo">
+                        <div>Posts: <u>45</u></div>
+                        <div>Points: <u>5342</u></div>
+                    </div>
+                    <div class="post-content">
+                        Just trying the post implementation.
+                        <br> to see how the posts page will look like.
+                        <br><br>
+                        Nothing else
+                        <hr>
+                        Regards,
+                        <div class="comment">
+                            <button onclick="showComment()">Comment</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- comment area -->
+                <div class="comment-area hide" id="comment-area">
+                    <textarea name="comment" id="" placeholder="comment here"></textarea>
+                    <input type="submit" value="submit">
+                </div>
+            </div>
+            
+            <!-- Show comments -->
+            <div class="comments-container">
+                <div class="head">
+                    <div class="authors">Author</div>
+                    <div class="post-content">Comments</div>
+                </div>
+                <div class="body">
+                    <div class="authors">
+                        <div class="another-user"><a href="#">Username</a></div>
+                        <div>Role</div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRudDbHeW2OobhX8E9fAY-ctpUAHeTNWfaqJA&usqp=CAU" alt="a profile photo">
+                        <div>Posts: <u>45</u></div>
+                        <div>Points: <u>5342</u></div>
+                    </div>
+                    <div class="post-content">
+                        Just trying the comment implementation.
+                        <br> to see how the posts page will look like.
+                        <br><br>
+                        Nothing else
+                       
+                        <div class="comment">
+                            <button onclick="showReply()">Reply</button>
+                        </div>
+                    </div>
+                    <!-- comment area -->
+                    <div class="comment-area hide" id="comment-area">
+                        <textarea name="comment" id="" placeholder="comment here"></textarea>
+                        <input type="submit" value="submit">
+                    </div>
+                    
+                </div>
+                <!-- reply area -->
+                <div class="comment-area hide" id="reply-area">
+                    <textarea name="comment" id="" placeholder="Reply here"></textarea>
+                    <input type="submit" value="submit">
+                </div>
+            </div>
+        </div>
+       
+        <!-- Forum status -->
+        <div class="forum-info">
+            <div class="state">
+                IŞIKunSt-Hub &nbsp;<i class="fa-solid fa-lightbulb" style="color: #0d3982;"></i>
+            </div>
+            <div>
+                <span> <u>.....</u> Posts in <u>.....</u> Topics by <u>.....</u> Users</span><br>
+                <span>Latests Thread: <strong><a href="">title</a></strong> on 00/00/0000 by <strong><a href="">User</a></strong></span>
+            </div>
+        </div>
+
+        <!-- Forum footer -->
+        <div>
+            <footer>
+                <span>&copy; &nbsp; Işık University | All rights reserved </span>
+            </footer>
+        </div>
+        
+        
+       
+        <script src="../static/main.js"></script> 
+    </body>
+</html>
