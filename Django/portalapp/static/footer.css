@@ -1,0 +1,27 @@
+/* footer styling */
+
+/* forum information */
+
+.forum-info{
+    padding: 20px;
+    background-color: gray;
+    color: white;
+}
+
+.state{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* footer */
+
+footer{
+    margin-top: 20px;
+    padding: 20px;
+    display: block;
+    text-align: center;
+    background-color: #0d3982;
+    color: white;
+}
+

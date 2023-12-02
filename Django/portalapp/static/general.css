@@ -1,32 +1,129 @@
 /* global styling */
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+
+
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --darkBlueColor: #000080;
+    --lightBlueColor: #A4AFF4;
+    --whiteColor: #FFFFFF;
+    --purpleBlueColor: #29315C; 
+    --greenyColor: #3d5c1f;
+    --burnedBrownColor: #b55600;
+    --fs14: 1.4rem;
+    --fs18: 1.8rem;
+    --fs24: 2.4rem;
+    --transition: all .3s ease;
 }
 
 html{
-    font-size: 14px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: white;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
 }
+
+
+body{
+    font-family: 'Nova Square', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    background-color: var(--whiteColor);
+}
+
+ul{
+    list-style: none;
+}
+
 
 a{
-    color: #0d3982; 
+    color: var(--darkBlueColor);
+    text-decoration: none; 
     font-weight: bolder;
     text-decoration: none;
-
+    transition: var(--transition);
 }
+
+
+a:hover{
+    text-decoration: underline;
+}
+
+
+img{
+    display: block;
+    max-width: 100%;
+}
+
+
+input{
+    border: none;
+    outline: none;
+}
+
+
+input:focus::placeholder{
+    opacity: 0;
+}
+
+
+button{
+    padding: .7rem 1rem;
+    border-radius: .3rem;
+    cursor: pointer;
+    font-size: var(--fs14);
+    font-weight: 500;
+    text-align: center;
+    height: 3.6rem;
+}
+
+.button:hover{
+    text-decoration: none;
+}
+
+.button-blue{
+    background-color: var(--darkBlueColor);
+    border: 0.1rem solid var(--darkBlueColor);
+    color: white;
+}
+
 
 h1{
     font-size: 16px;
     font-weight: bolder;
 }
 
+main{
+    padding: 12rem 0.5rem 2rem 0.5rem;
+}
 
-/* home.html */
+
+@media (min-width: 768px){
+    main{
+        padding-top:1rem;
+    }
+}
+
+
+/* forum.html */
 
 .container{
-    margin: 20px;
-    padding: 20px;
+    
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+@media (min-width:1300px) and (max-width: 1599px){
+    .container{
+        width: 1200px;
+    }
 }
 
 .subforum{
@@ -122,180 +219,6 @@ h1{
 
     h1{
         font-size: 18px;
-    }
-}
-
-
-/* navbar */
-
-header{
-    margin-inline: 10px;
-}
-
-.navbar{
-    display: flex;
-    align-items: center;
-}
-
-.navigation{
-    background-color: #0d3982;
-    padding: 10px;
-    width: 65%;
-    display: inline-block;
-    border-radius: 5px;
-    max-height: 80px;
-    margin-right: 10px;
-}
-
-.nav-list{
-    list-style-type: none;
-}
-
-.nav-item a{
-    color: white;
-    float: right;
-    text-align: center;
-    margin-inline: 20px;
-    font-size: 20px;
-    padding: 10px;
-}
-
-.nav-item a:hover{
-    background-color: gray;
-    border-radius: 5px;
-}
-
-.close-icon i{
-    font-size: 60px;
-    float: left;
-    cursor: pointer;
-    color: white;
-}
-
-.hide{
-    display: none;
-}
-
-.bar-icon{
-    font-size: 60px;
-    color: #0d3982;
-    display: inline-block;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-@font-face{
-    font-family: barrio;
-    src: url("../assets/Barrio-Regular.otf");
-}
-
-.brand{
-    font-size: 60px;
-    display: inline-block;
-    font-family: barrio;
-}
-
-
-/* navbar for smartphones */
-
-@media screen and (max-width: 460px){
-    header{
-        margin-inline: 10px;
-    }
-    
-    .navbar{
-        display: flex;
-        align-items: center;
-    }
-    
-    .navigation{
-        max-height: auto;
-    }
-     
-    .nav-item a{
-        color: white;
-        display: inline;
-        float: left;
-        text-align: center;
-        margin-inline: 3px;
-        font-size: 10px;
-        padding: 5px;
-    }
-    
-    
-    .close-icon i{
-        font-size: 30px;
-        float: left;
-        cursor: pointer;
-        color: white;
-    }
-    
-    .hide{
-        display: none;
-    }
-    
-    .bar-icon{
-        font-size: 30px;
-        color: #0d3982;
-        display: inline-block;
-        margin-right: 10px;
-        cursor: pointer;
-    }
-    
-    @font-face{
-        font-family: barrio;
-        src: url("../assets/Barrio-Regular.otf");
-    }
-    
-    .brand{
-        font-size: 30px;
-        display: inline-block;
-        font-family: barrio;
-    }
-}
-
-
-/* search bar */
-
-
-.search-bar{
-    border: solid 1px#0d3982;
-    margin-top: 20px;
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-    box-shadow: 1px 2px 3px #0d3982 ;
-}
-
-.search-bar select{
-    padding: 10px;
-}
-
-.search-bar input{
-    padding: 10px;
-}
-
-.search-bar button{
-    padding: 10px;
-    background-color: #0d3982;
-}
-
-.search-bar button i{
-    color: white;
-}
-
-.search-bar button:hover{
-    background-color: gray;
-    color: white;
-    box-shadow: 1px 2px 3px #0d3982;
-}
-
-
-/* search bar for smartphones */
-@media screen and (max-width: 460px){
-    .search-bar button, .search-bar input, .search-bar select{
-        min-width: 300px;
-        margin-top: 5px;
     }
 }
 
