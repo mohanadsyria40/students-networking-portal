@@ -1,173 +1,191 @@
-
-/* header styling */
-/* navbar */
-
-header{
-    margin-inline: 10px;
+:root{
+    --darkBlueColor: #000080;
+    --lightBlueColor: #A4AFF4;
+    --whiteColor: #FFFFFF;
+    --purpleBlueColor: #29315C; 
+    --greenyColor: #3d5c1f;
+    --burnedBrownColor: #b55600;
+    --fs14: 1.4rem;
+    --fs18: 1.8rem;
+    --fs24: 2.4rem;
+    --transition: all .3s ease;
 }
 
-.navbar{
+
+.header{
+    position: relative;
+    background: url(../images/Banner.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.header .row{
+    position: absolute;
+    left: 0;
+    /* bottom: 0; */
+    width: 100%;
+    background-color: var(--darkBlueColor);
+}
+
+
+.header .logo{
+    display: flex;
+    justify-content: center;
+}
+
+
+.header .logo img{
+    width: auto;
+    height: 100%;
+}
+
+
+.header .row .header-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.header a{
+    color: white;
+}
+
+.header .row .header-content .logo{
+    order: 1;
+}
+
+
+.header .row .header-content{
+    display: flex;
+    justify-content: center;
+}
+
+
+.header .row .header-content .nav-search{
+    order: 3;
+    flex: 1 1 100%;
+    margin-top: 1rem;
+    padding: 0 1rem;
+
+}
+
+.header .row .header-content .nav-search .form-group{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+
+.header .row .header-content .nav-search .form-group input{
+    height: 4rem;
+    padding-left: 2rem;
+    border-radius: 0.4rem;
+    font-size: var(--fs14);
+    background-color: var(--lightBlueColor);
+    border: 0.1rem solid var(--lightBlueColor);
+    font-weight: 500;
+    text-align: left;
+    color: black;
+    width: 100%;
+}
+
+
+.header .row .header-content .nav-search .form-group input:focus{
+    background-color: white;
+    color: black;
+}
+
+
+.header .row .header-content .nav-search .form-group input::placeholder{
+    font-weight: 500;
+    color: black;
+    font-size: var(--fs14);
+}
+
+
+.header .row .header-content .nav-search .form-group i{
+    color: var(--whiteColor);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 4rem;
+    height: 4rem;
     display: flex;
     align-items: center;
+    justify-content: center;
+    font-size: var(--fs18);
 }
 
-.navigation{
-    background-color: #0d3982;
-    padding: 10px;
-    width: 65%;
-    display: inline-block;
-    border-radius: 5px;
-    max-height: 80px;
-    margin-right: 10px;
+
+.header .row .header-content .nav-group{
+    order: 2;
 }
 
-.nav-list{
-    list-style-type: none;
+
+.header .row .header-content .nav-group ul{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+
 }
 
-.nav-item a{
-    color: white;
-    float: right;
-    text-align: center;
-    margin-inline: 20px;
-    font-size: 20px;
-    padding: 10px;
+
+.header .row .header-content .nav-group ul li a{
+    font-size: var(--fs24);
+    text-decoration: none;
 }
 
-.nav-item a:hover{
-    background-color: gray;
-    border-radius: 5px;
+
+
+.header .row .header-content .nav-group ul li a:hover{
+    color: var(--darkBlueColor);
+    text-decoration: none;
 }
 
-.close-icon i{
-    font-size: 60px;
-    float: left;
-    cursor: pointer;
-    color: white;
-}
 
-.hide{
+.header .row .header-content .nav-group ul li a span{
     display: none;
 }
 
-.bar-icon{
-    font-size: 60px;
-    color: #0d3982;
-    display: inline-block;
-    margin-right: 10px;
-    cursor: pointer;
-}
-/* 
-@font-face{
-    font-family: barrio;
-    src: url("../assets/Barrio-Regular.otf");
-} */
-
-.brand{
-    font-size: 60px;
-    display: inline-block;
-}
-
-
-/* navbar for smartphones */
-
-@media screen and (max-width: 460px){
-    header{
-        margin-inline: 10px;
+@media (min-width: 768px){
+    .header .row{
+        bottom: 0;
+        background-color: rgba(5, 3, 139, 0.5);
     }
-    
-    .navbar{
-        display: flex;
+
+    .header .row .header-content{
         align-items: center;
+        padding: 1.4rem 0.5rem;
     }
-    
-    .navigation{
-        max-height: auto;
+
+    .header .row .header-content .nav-search{
+        order: 2;
+        flex: 1 1 auto;
+        margin-top: 0;
+        padding: 0 1rem;
     }
-     
-    .nav-item a{
-        color: white;
-        display: inline;
-        float: left;
-        text-align: center;
-        margin-inline: 3px;
-        font-size: 10px;
-        padding: 5px;
+
+    .header .row .header-content .nav-search .form-group{
+        max-width: 48rem;
+        margin: 1 0 auto;
     }
-    
-    
-    .close-icon i{
-        font-size: 30px;
-        float: left;
-        cursor: pointer;
-        color: white;
+
+    .header .row .header-content .nav-group{
+        order: 3;
+        margin-left: 1.2rem;
     }
-    
-    .hide{
-        display: none;
-    }
-    
-    .bar-icon{
-        font-size: 30px;
-        color: #0d3982;
+
+    .header .row .header-content .nav-group ul li a span{
         display: inline-block;
-        margin-right: 10px;
-        cursor: pointer;
-    }
-    
-    @font-face{
-        font-family: barrio;
-        src: url("../assets/Barrio-Regular.otf");
-    }
-    
-    .brand{
-        font-size: 30px;
-        display: inline-block;
-        font-family: barrio;
+        text-transform: capitalize;
+        font-size: var(--fs14);
+        font-weight: 500;
+        color: var(--whiteColor);
+        margin-left: 0.5rem;
+
     }
 }
 
-
-/* search bar */
-
-
-.search-bar{
-    border: solid 1px#0d3982;
-    margin-top: 20px;
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-    box-shadow: 1px 2px 3px #0d3982 ;
-}
-
-.search-bar select{
-    padding: 10px;
-}
-
-.search-bar input{
-    padding: 10px;
-}
-
-.search-bar button{
-    padding: 10px;
-    background-color: #0d3982;
-}
-
-.search-bar button i{
-    color: white;
-}
-
-.search-bar button:hover{
-    background-color: gray;
-    color: white;
-    box-shadow: 1px 2px 3px #0d3982;
-}
-
-
-/* search bar for smartphones */
-@media screen and (max-width: 460px){
-    .search-bar button, .search-bar input, .search-bar select{
-        min-width: 300px;
-        margin-top: 5px;
-    }
-}
