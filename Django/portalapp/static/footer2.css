@@ -7,9 +7,11 @@ footer{
 }
 
 
+
 footer .container ul{
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 1rem;
 
@@ -50,6 +52,7 @@ footer .container ul li:last-child::before{
 footer .container p{
     margin-bottom: 1rem;
     color: gray;
+    text-align: center;
 }
 
 

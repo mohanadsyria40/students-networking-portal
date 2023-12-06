@@ -1,7 +1,5 @@
 /* global styling */
-@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
 *{
     box-sizing: border-box;
     margin: 0;
@@ -22,17 +20,23 @@
 }
 
 html{
-    font-size: 62.5%;
+    font-size: 80%;
     scroll-behavior: smooth;
 }
 
 
 body{
-    font-family: 'Nova Square', sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 1.5;
     background-color: var(--whiteColor);
+}
+
+
+img{
+    width: 4.0rem;
+    height: 4.0rem;
 }
 
 ul{
@@ -40,7 +44,13 @@ ul{
 }
 
 
-
+a{
+    color: var(--darkBlueColor);
+    text-decoration: none; 
+    font-weight: bolder;
+    text-decoration: none;
+    transition: var(--transition);
+}
 
 
 a:hover{
@@ -65,7 +75,7 @@ input:focus::placeholder{
 }
 
 
-button{
+.btn{
     padding: .7rem 1rem;
     border-radius: .3rem;
     cursor: pointer;
@@ -75,14 +85,19 @@ button{
     height: 3.6rem;
 }
 
-.button:hover{
+.btn:hover{
     text-decoration: none;
 }
 
-.button-blue{
+.btn-blue{
     background-color: var(--darkBlueColor);
     border: 0.1rem solid var(--darkBlueColor);
     color: white;
+}
+
+.btn-blue:hover{
+    background-color: #FFFFFF;
+    color: var(--darkBlueColor);
 }
 
 
@@ -114,12 +129,12 @@ main{
     width: 100%;
 }
 
-@media (min-width:1300px) and (max-width: 1599px){
+/* @media (min-width:1300px) and (max-width: 1599px){
     .container{
         width: 1200px;
     }
-}
-
+} */
+/* 
 .subforum{
     margin-top: 20px;
 }
@@ -163,12 +178,12 @@ main{
 
 .subforum-icon{
     font-size: 45px;
-}
+} */
 
 
 /* responsiveness for smartphones */
 
-@media screen and (max-width: 460px){
+/* @media screen and (max-width: 460px){
     .container{
         margin: 10px;
         padding: 10px;
@@ -187,11 +202,11 @@ main{
         border-radius: 5px;
         background-color: whitesmoke;
     }
-}
+} */
 
 
 /* responsiveness for tablets */
-@media screen and (min-width: 460px) and (max-width: 1024px){
+/* @media screen and (min-width: 460px) and (max-width: 1024px){
     .container{
         margin: 15px;
         padding: 15px;
@@ -214,12 +229,12 @@ main{
     h1{
         font-size: 18px;
     }
-}
+} */
 
 
 /* forum information */
 
-.forum-info{
+/* .forum-info{
     padding: 20px;
     background-color: gray;
     color: white;
@@ -233,21 +248,21 @@ main{
 
 /* footer */
 
-footer{
+/* footer{
     margin-top: 20px;
     padding: 20px;
     display: block;
     text-align: center;
     background-color: #0d3982;
     color: white;
-}
+} */ 
 
 
 /* ********************************** */
 /* posts page */
 
 
-.table-head{
+/* .table-head{
     display: flex;   
 }
 
@@ -274,10 +289,10 @@ footer{
 
 .table-head .last-reply{
     flex: 15%;
-}
+} */
 
 /* table body */
-.table-row{
+/* .table-row{
     display: flex;
 }
 
@@ -310,12 +325,12 @@ footer{
 
 .table-row .last-reply{
     flex: 15%;
-}
+} */
 
 
 
 /* pagination */
-.pagination{
+/* .pagination{
     padding: 20px;
     font-size: 15px;
 }
@@ -334,7 +349,7 @@ footer{
 
 
 /* navigation */
-.posts-navigate{
+/* .posts-navigate{
     margin-block: 20px;
     font-weight: lighter;
     font-size: 24px;
@@ -346,11 +361,11 @@ footer{
 
 .posts-navigate a:hover{
     color: #0d3982;
-}
+}  */
 
 
 /* status notes */
-.status-note{
+/* .status-note{
     padding: 20px;
     display: block;
     margin-bottom: 15px;
@@ -360,11 +375,11 @@ footer{
 .status-note span{
     font-size: 20px;
     margin-block: 5px;
-}
+} */
 
 
 /* posts page */
-.head{
+/* .head{
     display: flex;
     background-color: #0d3982;
     color: white;
@@ -408,11 +423,11 @@ footer{
     box-shadow: 4px 6px black;
     cursor: pointer;
     float: right;
-}
+} */
 
 
 /* comment are */
-
+/* 
 .comment-area{
     margin-top: 50px;
 }
@@ -438,4 +453,4 @@ footer{
 
 .comments-container{
     margin-top: 50px;
-}
+} */

@@ -13,11 +13,6 @@
 
 
 .header{
-    /* position: relative;
-    background: url("../images/Banner.png") no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh; */
     position: relative;
     background: url(../images/Banner.png) no-repeat;
     background-size: cover;
@@ -28,7 +23,7 @@
 .header .row{
     position: absolute;
     left: 0;
-    bottom: 0;
+    /* bottom: 0; */
     width: 100%;
     background-color: var(--darkBlueColor);
 }
