@@ -17,7 +17,7 @@
     background: url(../images/Banner.png) no-repeat;
     background-size: cover;
     background-position: center;
-
+    padding-bottom: 10rem;
 }
 
 .header .row{
@@ -46,14 +46,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1rem 0;
+    z-index: 2;
 }
 
 .header a{
     color: white;
-}
-
-.header .row .header-content .logo{
-    order: 1;
 }
 
 
@@ -84,7 +81,7 @@
     padding-left: 2rem;
     border-radius: 0.4rem;
     font-size: var(--fs14);
-    background-color: var(--lightBlueColor);
+    background-color: var(--whiteColor);
     border: 0.1rem solid var(--lightBlueColor);
     font-weight: 500;
     text-align: left;
@@ -107,7 +104,7 @@
 
 
 .header .row .header-content .nav-search .form-group i{
-    color: var(--whiteColor);
+    color: var(--darkBlueColor);
     position: absolute;
     right: 0;
     bottom: 0;

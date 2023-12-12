@@ -1,4 +1,8 @@
 /* Left Section */
+body{
+    background-color: rgba(170, 170, 236, 0.432);
+}
+
 
 
 main .left h2{
@@ -467,6 +471,11 @@ main .right .recommended-categories h3{
 .login .row .content .bottom a{
     text-transform: capitalize;
 }
+
+
+
+
+
 
 
 
