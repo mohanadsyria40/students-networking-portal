@@ -14,7 +14,7 @@
 
 .header{
     position: relative;
-    background: url(../images/Banner.png) no-repeat;
+    background: url(images/Banner.png) no-repeat;
     background-size: cover;
     background-position: center;
     padding-bottom: 10rem;
