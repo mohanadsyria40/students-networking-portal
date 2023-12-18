@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from register_forms import MyRegistrationForm, MyLoginForm
+from .register_forms import MyRegistrationForm, MyLoginForm
 
 
 def register(request):
   if request.method == 'POST':
     # Use Django's UserCreationForm to process user input
-    form = MyRegistrationForm(request.POST)
+    form = MyRegistrationForm(request=request, data=request.POST)
     if form.is_valid():
       # Create new user and log them in
       user = form.save()
@@ -15,7 +15,7 @@ def register(request):
   else:
     # Render the registration form
     form = MyRegistrationForm()
-  return render(request, 'registration/register.html', {'form': form})
+  return render(request, 'users/register.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
@@ -27,5 +27,5 @@ def login_view(request):
             return redirect('home')
     else:
         # Render the login form
-        form = MyLoginForm()
-    return render(request, 'login/login.html', {'form': form})
+        form = MyLoginForm(request=request, data=request.POST)
+    return render(request, 'users/login.html', {'form': form})
