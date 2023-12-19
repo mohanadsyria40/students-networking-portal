@@ -14,7 +14,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student")
     firstname = models.CharField(max_length=255)
     lastname = models.CharField(max_length=255)
-    studentId = models.CharField(max_length=20, primary_key=True)
+    studentId = models.CharField(max_length=20, primary_key=True, unique=True)
     email = models.CharField(max_length=255, unique=True)
     #threads = models.ManyToManyField(Thread)
     #posts = models.ManyToManyField(Post)
