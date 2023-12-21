@@ -51,6 +51,12 @@ a{
     transition: var(--transition);
 }
 
+button{
+    color: var(--darkBlueColor);
+    text-decoration: none; 
+    font-weight: bolder;
+    transition: var(--transition);
+}
 
 a:hover{
     text-decoration: underline;

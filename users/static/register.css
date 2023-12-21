@@ -102,10 +102,9 @@
 
 .signup .container .row form{
     background-color: var(--whiteColor);
-    box-shadow: 0 0.2rem 0.4rem rgb(0, 0, 0, 0.11),
-                0 0.1rem 0.1rem rgb(0, 0, 0, 0.04);
+    box-shadow: 0 0.5rem 1.5rem 0 rgba(0, 0, 0, 0.5);
     padding: 1.2rem;
-    border-radius: 0.rem;
+    border-radius: 1rem;
     max-width: 55rem;
     width: 100%;
     margin: auto;
@@ -135,6 +134,7 @@
     display: block;
     width: 100%;
     line-height: 1.4;
+    visibility: visible;
 }
 
 

@@ -9,7 +9,7 @@ class MyRegistrationForm(UserCreationForm):
   student_id = forms.CharField(max_length=20, label='Student ID')
   firstname = forms.CharField(max_length=255, label='First Name')
   lastname = forms.CharField(max_length=255, label='Last Name')
-
+  
   class Meta:
     model = User
     fields = ['student_id', 'firstname', 'lastname', 'email', 'password1', 'password2']
@@ -21,7 +21,7 @@ class MyRegistrationForm(UserCreationForm):
       user.save()  # Save User model instance
 
       # Create and associate Student model instance
-      student = Student(user=user, student_id=self.cleaned_data['student_id'],
+      student = Student(user=user, studentId=self.cleaned_data['studentId'],
                        firstname=self.cleaned_data['firstname'],
                        lastname=self.cleaned_data['lastname'])
       student.save()
@@ -30,7 +30,8 @@ class MyRegistrationForm(UserCreationForm):
     
 
 class MyLoginForm(AuthenticationForm):
-  username = forms.CharField(max_length=254, label='Student ID')
-
+  username = forms.CharField(max_length=254, label='Username or Student ID')
+  password = forms.CharField(widget=forms.PasswordInput())
+  
   class Meta:
     fields = ['username', 'password']

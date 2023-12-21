@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{% static 'general.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
     <link rel="stylesheet" href="{% static 'footer.css' %}">
-    <link rel="stylesheet" href="{% static 'index.css' %}">
+    {% block style %}
+    {% endblock style %}
     <script src="https://kit.fontawesome.com/afee173c1f.js" crossorigin="anonymous"></script>
     <title>{% block title %}IsikUnStHub{% endblock title %}</title>
 </head>
@@ -65,7 +66,7 @@
             <p></p>
         </div>
     </footer>
-    <div class="overlay">
+    {% comment %} <div class="overlay">
         <div class="login" id="login">
             <div class="top">
                 <h2>Log in</h2>
@@ -97,7 +98,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
     <script src="{% static 'index.js' %}">
     </script>
 </body>
