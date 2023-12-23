@@ -6,6 +6,7 @@
 {% endblock style %}
     {% block title %}Registration{% endblock title%}
 {% block page_content%}
+
     <main>
         <section class="signup">
             <div class="container">
@@ -13,18 +14,17 @@
                     <form action="{% url 'register' %}" method="POST">
                         {% csrf_token %}
                         <h2>Sign up</h2>
-                        {% if form.errors %}
-                            <ul class="errorlist">
-                                {% for field in form %}
-                                {% for error in field.errors %}
-                                    <li>{{ error }}</li>
-                                {% endfor %}
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                        {{ form.as_p }}
+                        {% for field in form %}
+                            <div class="form-group">
+                                {{ field }}
+                            </div>
+                        {% endfor %}
                         <button type="submit" class="btn btn-blue">Sign Up</button>
                     </form>
+                </div>
+                <div class="bottom">
+                    <h4>Already a member?</h4>
+                    <a href="{% url 'login' %}">Enter directly</a>
                 </div>
             </div>
         </section>

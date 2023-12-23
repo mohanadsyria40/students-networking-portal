@@ -157,6 +157,31 @@
 }
 
 
+#messages { /* Assuming a container element for messages */
+margin: 10px 0;
+padding: 15px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: #f5f5f5;
+}
 
+#messages p {
+margin: 5px 0;
+font-size: var(--fs18);
+font-weight: 500;
+line-height: 1.5;
+}
+
+#messages p.success {
+color: #28a745;
+}
+
+#messages p.error {
+color: #dc3545;
+}
+
+#messages p.info {
+color: #3498db;
+}
 
 

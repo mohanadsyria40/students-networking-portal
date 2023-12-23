@@ -145,6 +145,28 @@
     margin-top: 2rem;
 }
 
+.signup .container .bottom{
+  text-align: center;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.233);
+  margin-top: 1rem;
+  margin-inline: -1rem;
+  margin-bottom: -1rem;
+}
+
+
+.signup .container .bottom h4{
+  font-weight: 400;
+}
+
+
+.signup .container .bottom a{
+  text-transform: capitalize;
+}
+
+
+
 
 
 /* Frequently asked questions */
