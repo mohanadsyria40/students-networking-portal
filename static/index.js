@@ -10,11 +10,3 @@ faqs.forEach((faq)=>{
 });
 
 
-join.addEventListener("click", ()=>{
-    overlay.classList.add("active");
-});
-
-closeBtn.addEventListener("click", ()=>{
-    overlay.classList.remove("active");
-});
-

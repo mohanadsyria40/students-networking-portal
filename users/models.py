@@ -1,10 +1,17 @@
 from django.db import models
-from django.contrib.auth.models import User,AbstractUser
-# from .utils import PasswordVerifier
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
+from django.contrib.auth.models import Permission
+
 
     
+class CustomUser(AbstractUser):
+    groups = models.ManyToManyField(Group, related_name='customuser_set')
+    user_permissions = models.ManyToManyField(Permission, related_name='customuser_set')    
+    
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student")
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name="student")
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     studentId = models.CharField(max_length=20, primary_key=True, unique=True)

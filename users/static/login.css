@@ -68,7 +68,7 @@
 
 .login .row .content .login-info form input:not([type="checkbox"]){
     display: block;
-    color: rgba(0, 0, 0, 0.35);
+    color: rgba(0, 0, 0, 0.75);
     background-color: rgba(0, 0, 0, 0.04);
     border: 0.1rem;
     border-color: var(--darkBlueColor);
@@ -156,32 +156,5 @@
     text-transform: capitalize;
 }
 
-
-#messages { /* Assuming a container element for messages */
-margin: 10px 0;
-padding: 15px;
-border: 1px solid #ccc;
-border-radius: 5px;
-background-color: #f5f5f5;
-}
-
-#messages p {
-margin: 5px 0;
-font-size: var(--fs18);
-font-weight: 500;
-line-height: 1.5;
-}
-
-#messages p.success {
-color: #28a745;
-}
-
-#messages p.error {
-color: #dc3545;
-}
-
-#messages p.info {
-color: #3498db;
-}
 
 

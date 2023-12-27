@@ -7,7 +7,15 @@
     {% block title %}Registration{% endblock title%}
 {% block page_content%}
 
+
     <main>
+        {% if form.errors %}
+        <div class="container">
+            <p id="messages">
+                There was an error with your info!
+            </p>
+        </div>
+        {% endif %}
         <section class="signup">
             <div class="container">
                 <div class="row">
@@ -17,6 +25,7 @@
                         {% for field in form %}
                             <div class="form-group">
                                 {{ field }}
+                                {{ field.errors }}
                             </div>
                         {% endfor %}
                         <button type="submit" class="btn btn-blue">Sign Up</button>
@@ -24,7 +33,7 @@
                 </div>
                 <div class="bottom">
                     <h4>Already a member?</h4>
-                    <a href="{% url 'login' %}">Enter directly</a>
+                    <a href="users/login">Enter directly</a>
                 </div>
             </div>
         </section>

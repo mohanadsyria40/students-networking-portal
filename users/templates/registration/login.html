@@ -13,14 +13,12 @@
             <div class="row">
                 <div class="content">
                     <div class="login-info">
-                        <form action="{% url 'forum' %}" method="POST">
+                        <form action="{% url 'login' %}" method="POST">
                             {% csrf_token %}
                             {% for field in form %}
                                 <div class="form-group">
                                     {{ field }}
-                                    {% for error in field.errors %}
-                                        <div class="error-message">{{ error }}</div>
-                                    {% endfor %}
+                                    {{ field.errors }}
                                 </div>
                             {% endfor %}
                             <a href="#">Forgot your password?</a>
@@ -30,20 +28,11 @@
                             </div>
                             <button type="submit" class="btn btn-blue">Log in</button>
                           </form>
-                          {% if messages%}
-                          <div id="messages">
-                            
-                                {% for message in messages %}
-                                    <p class="{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% else %}info{% endif %}">
-                                    {{ message }}
-                                    </p>
-                                {% endfor %}
-                          </div>
-                          {% endif %}
+                          
                     </div>
                     <div class="bottom">
                         <h4>New to IşıkUnSt Portal?</h4>
-                        <a href="{%url 'register' %}">Join your classmates</a>
+                        <a href="{% url 'register' %}">Join your classmates</a>
                     </div>
                 </div>
             </div>
