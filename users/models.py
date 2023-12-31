@@ -1,31 +1,45 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User, AbstractUser
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
-from django.contrib.auth.models import Permission
+from PIL import Image
 
 
-    
+
+
 class CustomUser(AbstractUser):
-    groups = models.ManyToManyField(Group, related_name='customuser_set')
-    user_permissions = models.ManyToManyField(Permission, related_name='customuser_set')    
-    
-class Student(models.Model):
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name="student")
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    studentId = models.CharField(max_length=20, primary_key=True, unique=True)
-    email = models.CharField(max_length=255, unique=True)
-    #threads = models.ManyToManyField(Thread)
-    #posts = models.ManyToManyField(Post)
-   
+    studentId = models.CharField(max_length=20, unique=True)
+    email = models.EmailField()
+
+
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-    
+        return self.username
+
+
 
 class Profile(models.Model):
-    student = models.OneToOneField(Student, on_delete=models.CASCADE)
-    id = models.AutoField(primary_key=True)
+    student = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    avatar = models.ImageField(
+        default='avatar.jpg', # default avatar
+        upload_to='profile_avatars' # dir to store the image
+    )
+
+
+    def __str__(self):
+        return f'{self.student.get_username()} Profile'
+
+
+    def save(self, *args, **kwargs):
+        # save the profile first
+        super().save(*args, **kwargs)
+
+        # resize the image
+        img = Image.open(self.avatar.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            # create a thumbnail
+            img.thumbnail(output_size)
+            # overwrite the larger image
+            img.save(self.avatar.path)
+
     grade = models.DecimalField(max_digits=3, decimal_places=2)
     description = models.TextField()
-    
