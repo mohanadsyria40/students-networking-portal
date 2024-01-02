@@ -6,40 +6,27 @@ from PIL import Image
 
 
 
+# models.py
+
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+from PIL import Image
+
 class CustomUser(AbstractUser):
     studentId = models.CharField(max_length=20, unique=True)
     email = models.EmailField()
-
+    grade = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    avatar = models.ImageField(upload_to='profile_avatars', default='default.jpg', blank=True)
 
     def __str__(self):
         return self.username
 
-
-
-class Profile(models.Model):
-    student = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
-    avatar = models.ImageField(
-        default='avatar.jpg', # default avatar
-        upload_to='profile_avatars' # dir to store the image
-    )
-
-
-    def __str__(self):
-        return f'{self.student.get_username()} Profile'
-
-
     def save(self, *args, **kwargs):
-        # save the profile first
         super().save(*args, **kwargs)
 
-        # resize the image
         img = Image.open(self.avatar.path)
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
-            # create a thumbnail
             img.thumbnail(output_size)
-            # overwrite the larger image
             img.save(self.avatar.path)
-
-    grade = models.DecimalField(max_digits=3, decimal_places=2)
-    description = models.TextField()
