@@ -127,12 +127,16 @@
 .header .row .header-content .nav-group ul li a{
     font-size: var(--fs24);
     text-decoration: none;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    
+
 }
 
 
 
 .header .row .header-content .nav-group ul li a:hover{
-    color: var(--darkBlueColor);
+    transform: scale(1.1);
     text-decoration: none;
 }
 
@@ -159,10 +163,11 @@
 @media (min-width: 768px){
     .header .row{
         bottom: 0;
-        background-color: rgba(5, 3, 139, 0.5);
+        background-color: var(--darkBlueColor);
     }
 
     .header .row .header-content{
+        display: flex;
         align-items: center;
         padding: 1.4rem 0.5rem;
     }
@@ -180,7 +185,7 @@
     }
 
     .header .row .header-content .nav-group{
-        order: 3;
+        order: 1;
         margin-left: 1.2rem;
     }
 

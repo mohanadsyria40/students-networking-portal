@@ -1,86 +1,219 @@
-/* Add this code to your main stylesheet or a separate profile.css file */
 
-/* Profile Page Styles */
-.profile-container {
-    margin-top: 50px;
+.profile .container .row{
+    margin: 1rem 0;
+    margin-top: 10rem;
 }
 
-.profile-card {
-    background-color: #fff;
+
+.profile .container .row form{
+    background-color: var(--whiteColor);
     box-shadow: 0 0.5rem 1.5rem 0 rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
+    padding: 1.2rem;
+    border-radius: 1rem;
+    max-width: 55rem;
+    width: 100%;
+    margin: auto;
 }
 
-.profile-avatar {
-    max-width: 100%;
-    height: auto;
-    border-radius: 50%;
-    margin-bottom: 20px;
+
+.profile .container .row form h2{
+    font-size: 2.7rem;
+    color: var(--darkBlueColor);
+    margin-bottom: 1.5rem;
 }
 
-.profile-heading {
-    text-align: center;
-    margin-bottom: 10px;
+
+.profile .container .row form .form-group{
+    margin-bottom: 1rem;
 }
 
-.profile-email {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
-/* Update the profile form styles in your stylesheet */
-
-.profile-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0.5rem 1.5rem 0 rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    margin-top: 50px;
-}
-
-.profile-form label {
+.profile .container .row form input{
+    background-color: rgb(0, 0, 0, 0.04);
+    padding: 1rem 1.5rem;
+    font-size: 1.6rem;
+    color: rgb(0, 0, 0, 0.75);
+    border: 0.1rem;
+    border-radius: 0.3rem;
+    border-color: var(--darkBlueColor);
     display: block;
-    margin-bottom: 12px;
-}
-
-.profile-form input,
-.profile-form textarea {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+    line-height: 1.4;
+    visibility: visible;
 }
 
-.profile-form button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 12px;
+
+
+.profile .container .row form .btn{
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.profile .container .bottom{
+  text-align: center;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.233);
+  margin-top: 1rem;
+  margin-inline: -1rem;
+  margin-bottom: -1rem;
+}
+
+
+.profile .container .bottom h4{
+  font-weight: 400;
+}
+
+
+.profile .container .bottom a{
+  text-transform: capitalize;
+}
+
+
+
+@media (min-width: 768px){
+    .header .row{
+        bottom: 0;
+        background-color: rgba(5, 3, 139, 0.5);
+    }
+
+    .header .row .header-content{
+        align-items: center;
+        padding: 1.4rem 0.5rem;
+    }
+
+    .header .row .header-content .nav-search{
+        order: 2;
+        flex: 1 1 auto;
+        margin-top: 0;
+        padding: 0 1rem;
+    }
+
+    .header .row .header-content .nav-search .form-group{
+        max-width: 48rem;
+        margin: 1 0 auto;
+    }
+
+    .header .row .header-content .nav-group{
+        order: 3;
+        margin-left: 1.2rem;
+    }
+
+    .header .row .header-content .nav-group ul li a span{
+        display: inline-block;
+        text-transform: capitalize;
+        font-size: var(--fs14);
+        font-weight: 500;
+        color: var(--whiteColor);
+        margin-left: 0.5rem;
+
+    }
+}
+
+
+@media (max-width: 600px){
+  .header{
+    flex-direction: column;
+    padding-bottom: 1rem;
+    padding-top: 3rem;
+
+  }
+  .navbar-group{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+  }
+
+  .logo{
+    max-height: 49px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+  }
+  
+  .logo img {
+    width: auto;
+    height: 20rem;
+  }
+  
+
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+}
+
+
+  .navbar ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+
+  .navbar ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar li {
+    margin-right: 20px;
+  }
+  
+  .navbar a {
+    text-decoration: none;
+    color: var(--whiteColor);
+    font-weight: bold;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar input {
+    padding: 8px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
+    margin-right: 10px;
+    text-transform: capitalize;
+    width: 100%;
+  }
+  
+  .search-bar button {
+    background-color: var(--whiteColor);
+    color: var(--darkBlueColor);
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
     cursor: pointer;
-    width: 100%;
-}
-
-.profile-form button:hover {
-    background-color: #0056b3;
-}
-
-/* Additional Styling for Bootstrap Classes (Assuming Bootstrap is used) */
-.card {
-    border: none;
-}
-
-.btn-primary {
-    background-color: #007bff;
+  }
+  
+  .user-section a {
+    text-decoration: none;
     color: #fff;
-    border: none;
+    font-weight: bold;
+    padding-right: 1rem;
+    
+  }
+
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
+/* Add styles to make the description box visually appealing */
+textarea#id_description {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical; /* Allow vertical resizing of the textarea */
+}
+
+/* Optionally, you can add styles to limit the height of the textarea */
+textarea#id_description {
+  max-height: 200px; /* Adjust the value based on your preference */
+  overflow-y: auto; /* Add a scrollbar when the content exceeds the height */
 }

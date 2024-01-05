@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
-from django.contrib.auth import get_user_model
 from PIL import Image
 
 
@@ -8,16 +7,12 @@ from PIL import Image
 
 # models.py
 
-from django.contrib.auth.models import AbstractUser
-from django.db import models
-from PIL import Image
-
 class CustomUser(AbstractUser):
     studentId = models.CharField(max_length=20, unique=True)
     email = models.EmailField()
     grade = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-    avatar = models.ImageField(upload_to='profile_avatars', default='default.jpg', blank=True)
+    avatar = models.ImageField(upload_to='profile_avatars', default='avatar.jpg', blank=True)
 
     def __str__(self):
         return self.username

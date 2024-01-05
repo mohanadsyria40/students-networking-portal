@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig', 
     'forum.apps.ForumConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -146,7 +147,6 @@ LOGGING = {
     "handlers": {"console": {"class": "logging.StreamHandler"}},
     "loggers": {"django_auth_ldap": {"level": "DEBUG", "handlers": ["console"]}},
 }
-
 
 
 

@@ -1,37 +1,56 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static%}
 
-{% block style %}
-    <link rel="stylesheet" href="{% static '../static/profile.css' %}">
-{% endblock style %}
+{% block style%}
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+{% endblock style%}
 
-{% block title %}Profile - IsikUnStHub{% endblock title %}
+{% block title %}Your Profile - IsikUnStHub{% endblock title %}
 
 {% block page_content %}
-{% if form.errors %}
-    <main>
+
+<main>
+    
         <div class="container">
-            <p id="messages">
-                There was an error with your info!
-            </p>
+            {% if form.errors %}
+                <p id="messages">
+                    There was an error with your info!
+                </p>
+            {% endif %}
         </div>
-        {% endif %}
-        <section class="profile">
-            <div class="container">
-                <div class="row">
-                    <form action="{% url 'profile' %}" method="POST">
-                        {% csrf_token %}
-                        <h2>Sign up</h2>
+    
+    <section class="profile">
+        <div class="container">
+            <div class="row">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <h2>Edit Profile</h2>
                         {% for field in form %}
+                            {% if field == form.avatar %}
                             <div class="form-group">
+                                <label for="{{ form.avatar.id_for_label }}" class="form-label">{{ form.avatar.label }}</label>
+                                <img src="{{ form.instance.avatar.url }}" alt="Avatar" class="avatar-preview">
+                                {{ form.avatar }}
+                            </div>
+                            {% elif  field == form.description %}
+                            <div class="form-group">
+                                <label for="{{ form.description.id_for_label }}" class="form-label">{{ form.description.label }}</label>
+                                {{ form.description }}
+                            </div>
+                            {% else %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
                                 {{ field }}
                                 {{ field.errors }}
                             </div>
+                            {% endif %}
+
                         {% endfor %}
-                        <button type="submit" class="btn btn-blue">Update Profile</button>
-                    </form>
-                </div>
+                        
+                    <button type="submit" class="btn btn-blue">Update Profile</button>
+                </form>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 {% endblock page_content %}

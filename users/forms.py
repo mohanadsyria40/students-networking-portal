@@ -1,7 +1,8 @@
+from pickle import FALSE
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import Profile
+from pkg_resources import require
 
 
 CustomUser = get_user_model()
@@ -30,18 +31,20 @@ class StudentLoginForm(AuthenticationForm):
     fields = ['username', 'password']
     
     
-    
+
 class UserUpdateForm(forms.ModelForm):
-
+    avatar = forms.ImageField(widget=forms.FileInput)
+    description = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}), required=False)
     
-  class Meta:
+    class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'first_name', 'last_name']
+        fields = ['avatar', 'username', 'studentId', 'email', 'first_name', 'last_name', 'grade', 'description']
         
+    def clean_studentId(self):
+      studentId = self.cleaned_data.get('studentId')
 
-class ProfileUpdateForm(forms.ModelForm):
+      # Your validation logic goes here
+      if not studentId:
+          raise forms.ValidationError("Student ID is required.")
 
-    
-  class Meta:
-        model = Profile
-        fields = ['grade', 'description']
+      return studentId

@@ -1,6 +1,4 @@
 const join = document.querySelector(".join"),
-      overlay = document.querySelector(".overlay"),
-      closeBtn = document.querySelector(".overlay .close"),
       faqs = document.querySelectorAll(".faq");
 
 faqs.forEach((faq)=>{
@@ -9,4 +7,8 @@ faqs.forEach((faq)=>{
     });
 });
 
-
+function closeMessage(icon) {
+    // Find the parent message container and hide it
+    var messageContainer = icon.closest('.container#messages');
+    messageContainer.style.display = 'none';
+}
