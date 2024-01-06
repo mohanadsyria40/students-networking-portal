@@ -17,6 +17,23 @@ from .tokens import account_activation_token
 
 
 def activate(request, uidb64, token):
+  user = get_user_model()
+  try:
+    uid = force_str(urlsafe_base64_decode(uidb64))
+    user = user.objects.get(pk=uid)
+  except:
+    user = None
+    
+  if user is not None and account_activation_token.check_token(user, token):
+    user.is_active = True
+    user.save()
+    
+    messages.success(request, "Thank you for your email verification. You can now join the community by logging in :)")
+    return redirect('login')
+  
+  else:
+    messages.error(request, "Ops!! Activation link is invalid")
+
   return redirect('forum')
 
 
