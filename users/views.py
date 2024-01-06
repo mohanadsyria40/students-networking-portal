@@ -3,8 +3,9 @@ from imp import get_suffixes
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout, get_user_model
-from .forms import StudentRegistrationForm, StudentLoginForm, UserUpdateForm
+from .forms import StudentRegistrationForm, StudentLoginForm, UserUpdateForm, SetPasswordForm, PasswordResetForm
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
@@ -23,14 +24,14 @@ def activate(request, uidb64, token):
     user = user.objects.get(pk=uid)
   except:
     user = None
-    
+
   if user is not None and account_activation_token.check_token(user, token):
     user.is_active = True
     user.save()
-    
+
     messages.success(request, "Thank you for your email verification. You can now join the community by logging in :)")
     return redirect('login')
-  
+
   else:
     messages.error(request, "Ops!! Activation link is invalid")
 
@@ -83,7 +84,7 @@ def login_view(request):
 
       if user is not None:
         login(request, user)
-        messages.success(request, "Logged in successfully!")
+        messages.success(request, f'Hello <strong>{user.username}</strong>, you were Logged in successfully!')
         return redirect('forum')
 
 
@@ -111,11 +112,11 @@ def profile_view(request, username):
       user_form = form.save()
       messages.success(request, f'{user_form.username}, your profile has been updated')
       return redirect('profile', user_form.username)
-    
+
     for error in list(form.errors.values()):
       messages.error(request, error)
-      
-      
+
+
   user = get_user_model().objects.filter(username=username).first()
   if user:
     form = UserUpdateForm(instance=user)
@@ -124,5 +125,37 @@ def profile_view(request, username):
       template_name='users/profile.html',
       context = {"form": form}
     )
-    
+
   return redirect('forum')
+
+@login_required
+def password_change(request):
+    user = request.user
+    if request.method == 'POST':
+       form = SetPasswordForm(user, request.POST)
+       if form.is_valid():
+         form.save()
+         messages.success(request, "Your password has been successfully changed!")
+         return redirect('login')
+       
+       else:
+          for error in list(form.errors.values()):
+            messages.error(request, error)
+
+    form = SetPasswordForm(user)
+    return render(request, 'users/password_reset_confirm.html', {'form': form})
+   
+   
+
+def password_reset_request(request):
+  form = PasswordResetForm()
+  return render(
+    request=request,
+    template_name="users/password_reset.html",
+    context={'form': form}
+  )
+  
+  
+def passwordResetConfirm(request, uidb4, token):
+  return redirect('forum')
+  

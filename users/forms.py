@@ -1,5 +1,5 @@
 from pickle import FALSE
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, SetPasswordForm, PasswordResetForm
 from django import forms
 from django.contrib.auth import get_user_model
 from pkg_resources import require
@@ -48,3 +48,16 @@ class UserUpdateForm(forms.ModelForm):
           raise forms.ValidationError("Student ID is required.")
 
       return studentId
+    
+
+
+class SetPasswordForm(SetPasswordForm):
+    class Meta:
+        model = CustomUser
+        fields = ['password1', 'password2']
+     
+     
+
+class PasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(PasswordResetForm, self).__init__(*args, **kwargs)

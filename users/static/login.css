@@ -69,7 +69,7 @@
 .login .row .content .login-info form input:not([type="checkbox"]){
     display: block;
     color: rgba(0, 0, 0, 0.75);
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: rgba(0, 0, 0, 0.15);
     border: 0.1rem;
     border-color: var(--darkBlueColor);
     border-radius: 0.3rem;
