@@ -43,8 +43,8 @@
                                 Logout <i class="fa-solid fa-sign-in"></i>
                             </a></li>
                             {%else%}
-                            <li><a href="{% url 'register'%}">Register <i class="fa-solid fa-sign-in"></i></a></li>
-                            <li><a href="{% url 'login'%}">Login</a></li>
+                            <li><a href="{% url 'register'%}">Register <i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="{% url 'login'%}">Login <i class="fa-solid fa-sign-in"></i></a></li>
                             {% endif %}
                             <li><a href="#"><i class="fa-solid fa-comment"></i></a></li>
                             <li><a href="#"><i class="fa-solid fa-list-ul"></i></a></li>
@@ -59,7 +59,7 @@
         <div class="container" id="messages">
             {% for message in messages %}
                 <p class="message {{ message.tags }}">
-                    {{ message }}
+                    {{ message|safe }}
                 </p>
                 <i id="close" class="fa-solid fa-times" onclick="closeMessage(this)" area-hidden="true"></i>
             {% endfor %}

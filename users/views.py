@@ -6,23 +6,52 @@ from django.contrib.auth import login, authenticate, logout, get_user_model
 from .forms import StudentRegistrationForm, StudentLoginForm, UserUpdateForm
 from django.views import generic
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.core.mail import EmailMessage
 
+# from .decorators import user_not_authenticated
+from .tokens import account_activation_token
+
+
+def activate(request, uidb64, token):
+  return redirect('forum')
+
+
+def activateEmail(request, user, to_email):
+  mail_subject = "Activate your user account."
+  message = render_to_string("template_activate_account.html", {
+        'user': user.username,
+        'domain': get_current_site(request).domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': account_activation_token.make_token(user),
+        "protocol": 'https' if request.is_secure() else 'http'
+    })
+  email = EmailMessage(mail_subject, message, to=[to_email])
+  if email.send():
+      messages.success(request, f'Dear <strong>{user}</strong>, please go to you email <strong>{to_email}</strong> inbox and click on \
+              received activation link to confirm and complete the registration. <strong>Note:</strong> Check your spam folder.')
+  else:
+      messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
 
 
 def register(request):
   if request.method == "POST":
     form = StudentRegistrationForm(request.POST)
     if form.is_valid():
-      user = form.save()
+      user = form.save(commit=False)
+      user.is_active=False
       username = form.cleaned_data['username']
       password = form.cleaned_data['password1']
       studentId = request.POST['studentId']
       user.studentId = studentId
       user.save()
-      user = authenticate(username=username, password=password)
-      login(request, user)
-      messages.success(request, ("Account is successfully created!"))
+      activateEmail(request, user, form.cleaned_data.get('email'))
+      # user = authenticate(username=username, password=password)
+      # login(request, user)
+      # messages.success(request, ("Account is successfully created!"))
       return redirect('forum')
   else:
     form = StudentRegistrationForm()
@@ -55,22 +84,6 @@ def logout_view(request):
   messages.success(request, "You were logged out!")
   return redirect('forum')
 
-
-
-# class profile_view(LoginRequiredMixin, generic.UpdateView):
-#     model = get_user_model()
-#     form_class = UserUpdateForm
-#     template_name = 'users/profile.html'
-#     success_url = reverse_lazy('forum')
-
-#     def get_object(self, queryset=None):
-#         return self.request.user
-
-#     def form_valid(self, form):
-#         return super().form_valid(form)
-
-#     def form_invalid(self, form):
-#         return self.render_to_response(self.get_context_data(form=form))
 
 
 def profile_view(request, username):
