@@ -15,17 +15,12 @@
                     <div class="login-info">
                         <form action="{% url 'login' %}" method="POST">
                             {% csrf_token %}
-                            {% for field in form %}
-                                <div class="form-group">
-                                    {{ field }}
-                                    {{ field.errors }}
-                                </div>
-                            {% endfor %}
+                            {{form.as_p}}
                             <a href="{% url 'password_reset' %}">Forgot your password?</a>
-                            <div class="remember">
+                            {% comment %} <div class="remember">
                               <input type="checkbox" name="remember" value="1" checked />
                               <label for="remember">Stay logged in</label>
-                            </div>
+                            </div> {% endcomment %}
                             <button type="submit" class="btn btn-blue">Log in</button>
                           </form>
                           

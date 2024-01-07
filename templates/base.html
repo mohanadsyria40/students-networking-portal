@@ -58,15 +58,14 @@
         </div>
     </header>
     {% if messages %}
-        <div class="container" id="messages">
             {% for message in messages %}
+            <div class="container" id="messages">
                 <div class="message {{ message.tags }}">
                     {{ message|safe }}
                     <i id="close" class="fa-solid fa-times" onclick="closeMessage(this)" area-hidden="true"></i>
                 </div>
-                
+            </div>
             {% endfor %}
-        </div>
     {% endif %}
     {% block page_content %}
     {% endblock page_content %}

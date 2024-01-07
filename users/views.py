@@ -2,7 +2,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout, get_user_model
-from .forms import StudentRegistrationForm, StudentLoginForm, UserUpdateForm, SetPasswordForm, PasswordResetForm
+from users.forms import StudentRegistrationForm, StudentLoginForm, UserUpdateForm, SetPasswordForm, PasswordResetForm
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
@@ -71,13 +71,25 @@ def register(request):
       # login(request, user)
       # messages.success(request, ("Account is successfully created!"))
       return redirect('forum')
+    
+    else:
+      for key, error in list(form.errors.items()):
+        if key == 'captcha' and error[0] == 'This field is required.':
+          messages.error(request, "You must pass the reCAPTCHA test")
+          continue
+        messages.error(request, error)
+        
   else:
     form = StudentRegistrationForm()
 
   return render(request, 'registration/register.html', {'form': form})
 
+
+@user_not_authenticated
 def login_view(request):
   if request.method == "POST":
+    form = StudentLoginForm(request=request, data=request.POST)
+    if form.is_valid():
       username = request.POST['username']
       password = request.POST['password']
       user = authenticate(request, username=username, password=password)
@@ -88,13 +100,17 @@ def login_view(request):
         return redirect('forum')
 
 
-      else:
-        messages.info(request, "Invalid username or password.")
-        return redirect('login')
+    else:
+      for key, error in list(form.errors.items()):
+        if key == 'captcha' and error[0] == 'This field is required.':
+          messages.error(request, "You must pass the reCAPTCHA test")
+          continue
+        messages.error(request, error)
 
   else:
     form = StudentLoginForm()
-    return render(request, 'registration/login.html', {'form': form})
+
+  return render(request, 'registration/login.html', {'form': form})
 
 
 def logout_view(request):

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig', 
     'forum.apps.ForumConfig',
+    'django_recaptcha',
 
 ]
 
@@ -160,3 +162,12 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "IşıkUnStHub mohanadsyria40@gmail.com"
 
 PASSWORD_RESET_TIMEOUT = 14400
+
+
+
+
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
+
+SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
+
