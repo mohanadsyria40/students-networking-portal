@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+
     {% block style %}
     {% endblock style %}
     <link rel="stylesheet" href="{% static '../static/header.css' %}">
@@ -58,10 +60,11 @@
     {% if messages %}
         <div class="container" id="messages">
             {% for message in messages %}
-                <p class="message {{ message.tags }}">
+                <div class="message {{ message.tags }}">
                     {{ message|safe }}
-                </p>
-                <i id="close" class="fa-solid fa-times" onclick="closeMessage(this)" area-hidden="true"></i>
+                    <i id="close" class="fa-solid fa-times" onclick="closeMessage(this)" area-hidden="true"></i>
+                </div>
+                
             {% endfor %}
         </div>
     {% endif %}

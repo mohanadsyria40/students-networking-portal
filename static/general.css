@@ -130,7 +130,7 @@ main{
 }
 
 
-.container#messages p.message { /* Assuming a container element for messages */
+.container#messages .message { /* Assuming a container element for messages */
     margin: 10px 0;
     padding: 15px;
     border: 1px solid #ccc;
@@ -138,20 +138,20 @@ main{
     background-color: #f5f5f5;
 }
     
-.container#messages p.message.success {
+.container#messages .message.success {
     color: #28a745;
 }
 
-.container#messages p.message.error {
+.container#messages .message.error {
     color: #dc3545;
 }
 
-.container#messages p.message.info {
+.container#messages .message.info {
     color: #3498db;
 }
     
 
-.container#messages i#close {
+.container#messages .message i#close {
     position: absolute;
     top: 50%;
     right: 0;
