@@ -55,7 +55,7 @@
 }
 
 .header .row .header-content .nav-search{
-    order: 2;
+    order: 1;
     flex: 1 1 100%;
     margin-top: 1rem;
     padding: 0 1rem;
@@ -112,7 +112,14 @@
 
 
 .header .row .header-content .nav-group{
-    order: 1;
+    order: 3;
+}
+
+.header .row .header-content .ask-question{
+    order: 2;
+    flex: 1 1 auto;
+    margin-top: 0;
+    padding: 0 1rem;
 }
 
 
@@ -173,8 +180,14 @@
     }
 
     .header .row .header-content .nav-search{
-        order: 2;
+        order: 3;
         flex: 1 1 auto;
+        margin-top: 0;
+        padding: 0 1rem;
+    }
+
+    .header .row .header-content .ask-question{
+        order: 2;
         margin-top: 0;
         padding: 0 1rem;
     }

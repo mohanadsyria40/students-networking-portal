@@ -13,12 +13,12 @@ class ThreadForm(forms.ModelForm):
         
 class PostForm(forms.ModelForm):
     class Meta:
-        model = Thread
-        fields = ['category', 'title']
+        model = Post
+        fields = ['title', 'content']
         
         
         
 class CommentForm(forms.ModelForm):
     class Meta:
-        model = Thread
-        fields = ['category', 'title']
+        model = Comment
+        fields = ['content']

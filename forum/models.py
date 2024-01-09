@@ -6,6 +6,10 @@ from django.urls import reverse
 class Category(models.Model):
     name = models.CharField(max_length=100)
     
+    
+    def __str__(self):
+        return self.name
+    
 
 
 class Thread(models.Model):
@@ -22,11 +26,12 @@ class Thread(models.Model):
 class Post(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
     student = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Post by {self.student.get_username()} in {self.thread.title}"
+        return f"{self.title} Post by {self.student.get_username()} in {self.thread.title}"
     
     def comment_count(self):
         return Comment.objects.filter(post=self).count()

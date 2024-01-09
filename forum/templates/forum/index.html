@@ -10,118 +10,28 @@
     <div class="container">
         <div class="row">
             <section class="left">
-                <h2>Top Threads</h2>
+                <h2>Topics</h2>
                 <div class="inner-left">
-                    <div class="box">
-                        <div class="category"><a href="#"> MATH</a></div>
-                        <div class="details">
-                            <p>Discussions related to Mathematics</p>
-                            <h3>93 shadow vt100c</h3>
-                            <div class="sub-details">
-                                <span>mohanad_tara.</span>
-                                <span>2 h ago.</span>
-                                <span>mohaand_tara</span>
-                                <span>replied</span>
-                                <span>1 h ago</span>
-                                <div class="comment">
-                                    <i class="fa-solid fa-comment"></i>
-                                    <span>10</span>
+                    {% for thread in threads %}
+                        <div class="box">
+                            <div class="category"><a href="#">{{ thread.category.name }}</a></div>
+                            <div class="details">
+                                <p>{{ thread.category.name }}</p>
+                                <h3><a href="{% url 'thread_detail' pk=thread.pk %}">{{ thread.title }}</a></h3>
+                                <div class="sub-details">
+                                    <span>{{ thread.student.username }}</span>
+                                    <span>{{ thread.timestamp }}</span>
+                                    <div class="comment">
+                                        <i class="fa-solid fa-comment"></i>
+                                        <span>{{ thread.post_set.count }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="box">
-                        <div class="category"><a href="#"> MATH</a></div>
-                        <div class="details">
-                            <p>Discussions related to Mathematics</p>
-                            <h3>93 shadow vt100c</h3>
-                            <div class="sub-details">
-                                <span>mohanad_tara.</span>
-                                <span>2 h ago.</span>
-                                <span>mohaand_tara</span>
-                                <span>replied</span>
-                                <span>1 h ago</span>
-                                <div class="comment">
-                                    <i class="fa-solid fa-comment"></i>
-                                    <span>10</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="category"><a href="#"> MATH</a></div>
-                        <div class="details">
-                            <p>Discussions related to Mathematics</p>
-                            <h3>93 shadow vt100c</h3>
-                            <div class="sub-details">
-                                <span>mohanad_tara.</span>
-                                <span>2 h ago.</span>
-                                <span>mohaand_tara</span>
-                                <span>replied</span>
-                                <span>1 h ago</span>
-                                <div class="comment">
-                                    <i class="fa-solid fa-comment"></i>
-                                    <span>10</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="category"><a href="#"> MATH</a></div>
-                        <div class="details">
-                            <p>Discussions related to Mathematics</p>
-                            <h3>93 shadow vt100c</h3>
-                            <div class="sub-details">
-                                <span>mohanad_tara.</span>
-                                <span>2 h ago.</span>
-                                <span>mohaand_tara</span>
-                                <span>replied</span>
-                                <span>1 h ago</span>
-                                <div class="comment">
-                                    <i class="fa-solid fa-comment"></i>
-                                    <span>10</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="category"><a href="#"> MATH</a></div>
-                        <div class="details">
-                            <p>Discussions related to Mathematics</p>
-                            <h3>93 shadow vt100c</h3>
-                            <div class="sub-details">
-                                <span>mohanad_tara.</span>
-                                <span>2 h ago.</span>
-                                <span>mohaand_tara</span>
-                                <span>replied</span>
-                                <span>1 h ago</span>
-                                <div class="comment">
-                                    <i class="fa-solid fa-comment"></i>
-                                    <span>10</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="category"><a href="#"> MATH</a></div>
-                        <div class="details">
-                            <p>Discussions related to Mathematics</p>
-                            <h3>93 shadow vt100c</h3>
-                            <div class="sub-details">
-                                <span>mohanad_tara.</span>
-                                <span>2 h ago.</span>
-                                <span>mohaand_tara</span>
-                                <span>replied</span>
-                                <span>1 h ago</span>
-                                <div class="comment">
-                                    <i class="fa-solid fa-comment"></i>
-                                    <span>10</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </section>
+
             <section class="right">
                 <div class="box first">
                     <h3>IşıkUnSt portal</h3>
@@ -144,7 +54,7 @@
                     </div>
                 </div>
                 <div class="box top-threads">
-                    <h3>our top threads</h3>
+                    <h3>our top topics</h3>
                     <a href="#">View All <i class="fa-solid fa-arrow-right"></i></a>
                     <div class="inner-box">
                         <h4><a href="#">When will the semester end?</a></h4>

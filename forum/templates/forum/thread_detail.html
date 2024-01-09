@@ -1,0 +1,47 @@
+<!-- forum/thread_detail.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <!-- Add your stylesheets if needed -->
+{% endblock style %}
+
+{% block page_content %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <section class="left">
+                    <div class="box">
+                        <div class="category"><a href="#">{{ thread.category.name }}</a></div>
+                        <div class="details">
+                            <p>{{ thread.category.name }}</p>
+                            <h3>{{ thread.title }}</h3>
+                            <div class="sub-details">
+                                <span>{{ thread.student.username }}</span>
+                                <span>{{ thread.timestamp }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Display list of posts for the thread -->
+                    <div class="inner-left">
+                        {% for post in posts %}
+                            <div class="box">
+                                <div class="details">
+                                    <p>{{ post.content }}</p>
+                                    <div class="sub-details">
+                                        <span>{{ post.student.username }}</span>
+                                        <span>{{ post.timestamp }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <!-- Add other sections if needed -->
+
+            </div>
+        </div>
+    </main>
+{% endblock page_content %}
