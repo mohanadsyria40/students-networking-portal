@@ -33,8 +33,10 @@
                     {% endfor %}
                 </div>
             </section>
-            {% endblock %}
+            {% endblock left_main_content%}
+            
             <section class="right">
+                
                 <div class="box first">
                     <h3>IşıkUnSt portal</h3>
                     <span>From a student to a student</span>
@@ -43,16 +45,16 @@
                     </p>
                     <div class="stats">
                         <div>
-                            <h4>200</h4>
+                            <h4>{{total_posts}}</h4>
                             <span>posts</span>
                         </div>
                         <div>
-                            <h4>5000</h4>
+                            <h4>{{total_members}}</h4>
                             <span>members</span>
                         </div>
                     </div>
                     <div class="buttons">
-                        <a href="#" class="btn btn-blue"><i class="fa-solid fa-user-large"></i> Join your peers</a>
+                        <a href="{%url 'register' %}" class="btn btn-blue"><i class="fa-solid fa-user-large"></i> Join your peers</a>
                     </div>
                 </div>
                 <div class="box top-threads">

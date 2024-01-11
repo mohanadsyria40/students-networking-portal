@@ -8,8 +8,15 @@ from django.contrib import messages
 
 
 def forum(request):
+    total_posts = Post.objects.count()
+    total_members = get_user_model().objects.count()
+    
     threads = Thread.objects.all()
-    return render(request, "forum/index.html", {"threads": threads})
+    return render(
+        request, "forum/index.html",
+        {"threads": threads,
+         "total_posts": total_posts,
+         "total_members": total_members})
 
 
 def thread_detail(request, pk):
@@ -62,15 +69,29 @@ def create_post(request):
     )
     
     
+from django.urls import reverse
+
+from django.urls import reverse
+
 def delete_post(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
 
     # Check if the user is the author of the post
     if post.student == request.user:
         thread_pk = post.thread.pk  # Assuming your Thread model has a field named pk or id
+
+        # Check if the associated thread has no more posts
+        if not Post.objects.filter(thread=post.thread).exclude(pk=post.pk).exists():
+            # If no more posts, delete the thread
+            post.thread.delete()
+            redirect_url = reverse('forum')  # Redirect to the forum page
+        else:
+            # If there are still posts, redirect to the thread detail
+            redirect_url = reverse('thread_detail', args=[str(thread_pk)])
+
         post.delete()
         messages.success(request, 'Post deleted successfully.')
     else:
         messages.error(request, 'You do not have permission to delete this post.')
 
-    return redirect(reverse('thread_detail', args=[str(thread_pk)]))
+    return redirect(redirect_url)

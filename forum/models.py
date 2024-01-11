@@ -22,6 +22,10 @@ class Thread(models.Model):
     def __str__(self):
         return self.title
     
+
+    def delete_if_no_posts(self):
+        if not self.post_set.exists():
+            self.delete()
     
 
 class Post(models.Model):
