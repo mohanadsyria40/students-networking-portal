@@ -45,7 +45,7 @@ def create_post(request):
 
             post.save()
             messages.success(request, "Your question was successfully posted!")
-            return redirect('forum')
+            return redirect(reverse('thread_detail', args=[str(post.thread.pk)]))
         
         else:
             messages.error(request, "Failed to post the question! make sure information are valid")
@@ -67,9 +67,10 @@ def delete_post(request, post_pk):
 
     # Check if the user is the author of the post
     if post.student == request.user:
+        thread_pk = post.thread.pk  # Assuming your Thread model has a field named pk or id
         post.delete()
         messages.success(request, 'Post deleted successfully.')
     else:
         messages.error(request, 'You do not have permission to delete this post.')
 
-    return redirect('forum')
+    return redirect(reverse('thread_detail', args=[str(thread_pk)]))

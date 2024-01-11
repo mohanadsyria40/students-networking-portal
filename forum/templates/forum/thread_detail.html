@@ -4,6 +4,7 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static '../static/index.css' %}">
+    <link rel="stylesheet" href="{% static '../static/thread_detail.css' %}">
 {% endblock style %}
 {% block left_main_content%}
                 <section class="left">
@@ -23,21 +24,27 @@
                         {% for post in posts %}
                             <div class="box">
                                 <div class="details">
-                                    <p>{{ post.content }}</p>
                                     <div class="sub-details">
-                                        <span>By: {{ post.student.username }}</span>
-                                        <span>Time created: {{ post.timestamp }}</span>
+                                        <p>{{ post.content }}</p>
+                                        <div class="question-info">
+                                            <span>{{ post.student.username }}</span>
+                                            <span>{{ post.timestamp }}</span>
+                                        </div>
+                                        <div>
                                         {% if post.student == request.user %}
                                         <form method ="post" action="{% url 'delete_post' post.pk %}">
                                             {% csrf_token %}
-                                            <button type="submit">Delete</button>
+                                            <button class="btn btn-red" type="submit">Delete</button>
                                         </form>
+                                        </div>
                                         {% endif %} 
                                     </div>
                                 </div>
                             </div>
                             {% empty %}
-                            <p>No questions yet!</p>
+                            <div  class="empty">
+                                <p>No questions yet!</p>
+                            </div>
                         
                         {% endfor %}
                         
