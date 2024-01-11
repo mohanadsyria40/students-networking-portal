@@ -3,17 +3,18 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    
-    
-    def __str__(self):
-        return self.name
-    
+# models.py
+from django.db import models
 
 
 class Thread(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    CATEGORY_CHOICES = [
+        ('Academic questions', 'Academic questions'),
+        ('Courses', 'Courses'),
+        ('Registration', 'Registration'),
+        ('Events', 'Events')
+    ]
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
     title = models.CharField(max_length=255)
     student = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -26,7 +27,7 @@ class Thread(models.Model):
 class Post(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
     student = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=255)
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 

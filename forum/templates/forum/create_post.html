@@ -1,4 +1,3 @@
-<!-- forum/create_post.html -->
 {% extends "base.html" %}
 {% load static %}
 
@@ -14,42 +13,43 @@
                 <form id="post-form" method="post" enctype="multipart/form-data">
                     <h2>Ask your question</h2>
                     {% csrf_token %}
-                    {% for field in form %}
-                        {% if  field == form.content %}
-                        <div class="form-group">
-                            <label for="{{ form.content.id_for_label }}" class="form-label">{{ form.content.label }}</label>
-                            {{ form.content }}
-                        </div>
-                        {% else %}
-                        <div class="form-group">
-                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                            {{ field }}
-                            {{ field.errors }}
-                        </div>
-                        {% endif %}
 
-                    {% endfor %}
-                    <!-- Add a dropdown for thread selection -->
+                    <!-- Common Fields for Both Post and Thread -->
+                    <div class="form-group">
+                        <label for="{{ form.content.id_for_label }}" class="form-label">{{ form.content.label }}</label>
+                        {{ form.content }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.title.id_for_label }}" class="form-label">{{ form.title.label }}</label>
+                        {{ form.title }}
+                        {{ form.title.errors }}
+                    </div>
+
+                    <!-- Dropdown for Thread Selection -->
                     <label for="thread_choice">Select Topic:</label>
-                    <select name="thread_choice" id="id_thread">
-                        <option value="" selected disabled>Select Topic</option>  <!-- Add this line -->
+                    <select name="thread_choice" id="id_thread_choice">
+                        <option value="" selected disabled>Select Topic</option>
                         <option value="new">Create New Topic</option>
                         {% for thread in threads %}
                             <option value="{{ thread.id }}">{{ thread.title }}</option>
                         {% endfor %}
                     </select>
+                    <div id="new-thread-fields" style="display: none">
+                        <h3>Create New Topic</h3>
+                        <div class="form-group">
+                            <label for="{{ form.thread_title.id_for_label }}" class="form-label">{{ form.thread_title.label }}</label>
+                            {{ form.thread_title }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.category.id_for_label }}" class="form-label">{{ form.category.label }}</label>
+                            {{ form.category }}
+                        </div>
+                    </div>
+
                     <div id="button-container">
                         <button class="btn btn-blue" type="submit" id="submit-post">Post</button>
-                    </div> 
-                    <!-- Add an input for the new thread title -->
-                    <div id="new-thread-fields" style="display: none;">
-                        <h3>Create New Topic</h3>
-                        <form id="new-thread-form">
-                            {%csrf_token%}
-                            {{thread_form.as_p}}
-                        </form>
                     </div>
-                   
                 </form>
             </div>
         </div>

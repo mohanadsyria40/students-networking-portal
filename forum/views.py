@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 from .models import *
-from .forms import ThreadForm, PostForm, CommentForm
+from .forms import PostCreationForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
 
 def forum(request):
     threads = Thread.objects.all()
@@ -15,40 +17,59 @@ def thread_detail(request, pk):
     posts = Post.objects.filter(thread=thread)
     return render(request, 'forum/thread_detail.html', {"thread": thread, "posts": posts})
 
+
 @login_required(login_url='users/login')
 def create_post(request):
+      # Replace CombinedForm with the actual combined form you create
+
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostCreationForm(request.POST)
+
         if form.is_valid():
             post = form.save(commit=False)
             post.student = request.user
 
-            # Check if a new thread is being created
-            thread_choice = request.POST.get('thread_choice')
+            thread_choice = request.POST.get('thread_choice') 
             if thread_choice == 'new':
-                thread_form = ThreadForm(request.POST)
-                if thread_form.is_valid():
-                    new_thread = thread_form.save(commit=False)
-                    new_thread.student = request.user
-                    new_thread.save()
-                    post.thread = new_thread
+                # Create a new thread
+                new_thread = Thread.objects.create(
+                    title=form.cleaned_data['thread_title'],
+                    category=form.cleaned_data['category'],
+                    student=request.user
+                )
+                post.thread = new_thread
             else:
-                # Existing thread is selected
-                thread_form = None  # Initialize thread_form as None
-                thread_id = request.POST.get('thread_choice')
-                existing_thread = get_object_or_404(Thread, pk=thread_id)
+                # Use an existing thread
+                existing_thread = get_object_or_404(Thread, pk=thread_choice)
                 post.thread = existing_thread
 
             post.save()
+            messages.success(request, "Your question was successfully posted!")
             return redirect('forum')
-
+        
+        else:
+            messages.error(request, "Failed to post the question! make sure information are valid")
+        
     else:
-        form = PostForm()
-        thread_form = None  # Initialize thread_form as None
-
+        form = PostCreationForm()
+        
+        
     threads = Thread.objects.all()
     return render(
         request,
         "forum/create_post.html",
-        {"form": form, "thread_form": thread_form, "threads": threads},
+        {"form": form, "threads": threads},
     )
+    
+    
+def delete_post(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+
+    # Check if the user is the author of the post
+    if post.student == request.user:
+        post.delete()
+        messages.success(request, 'Post deleted successfully.')
+    else:
+        messages.error(request, 'You do not have permission to delete this post.')
+
+    return redirect('forum')

@@ -1,24 +1,19 @@
 <!-- forum/thread_detail.html -->
-{% extends "base.html" %}
+{% extends "forum/index.html" %}
 {% load static %}
 
 {% block style %}
-    <!-- Add your stylesheets if needed -->
+    <link rel="stylesheet" href="{% static '../static/index.css' %}">
 {% endblock style %}
-
-{% block page_content %}
-    <main>
-        <div class="container">
-            <div class="row">
+{% block left_main_content%}
                 <section class="left">
                     <div class="box">
-                        <div class="category"><a href="#">{{ thread.category.name }}</a></div>
+                        <div class="category">Category: <a href="#">{{ thread.category }}</a></div>
                         <div class="details">
-                            <p>{{ thread.category.name }}</p>
-                            <h3>{{ thread.title }}</h3>
+                            <h3>Topic: {{ thread.title }}</h3>
                             <div class="sub-details">
-                                <span>{{ thread.student.username }}</span>
-                                <span>{{ thread.timestamp }}</span>
+                                <span>By: {{ thread.student.username }}</span>
+                                <span>Time Opened: {{ thread.timestamp }}</span>
                             </div>
                         </div>
                     </div>
@@ -30,18 +25,22 @@
                                 <div class="details">
                                     <p>{{ post.content }}</p>
                                     <div class="sub-details">
-                                        <span>{{ post.student.username }}</span>
-                                        <span>{{ post.timestamp }}</span>
+                                        <span>By: {{ post.student.username }}</span>
+                                        <span>Time created: {{ post.timestamp }}</span>
+                                        {% if post.student == request.user %}
+                                        <form method ="post" action="{% url 'delete_post' post.pk %}">
+                                            {% csrf_token %}
+                                            <button type="submit">Delete</button>
+                                        </form>
+                                        {% endif %} 
                                     </div>
                                 </div>
                             </div>
+                            {% empty %}
+                            <p>No questions yet!</p>
+                        
                         {% endfor %}
+                        
                     </div>
                 </section>
-
-                <!-- Add other sections if needed -->
-
-            </div>
-        </div>
-    </main>
-{% endblock page_content %}
+{% endblock %}

@@ -43,7 +43,7 @@
 
 .header .row .header-content{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 1rem 0;
     z-index: 2;
@@ -55,7 +55,7 @@
 }
 
 .header .row .header-content .nav-search{
-    order: 1;
+    order: 2;
     flex: 1 1 100%;
     margin-top: 1rem;
     padding: 0 1rem;
@@ -116,12 +116,26 @@
 }
 
 .header .row .header-content .ask-question{
-    order: 2;
+    order: 1;
+    text-align: center;
     flex: 1 1 auto;
     margin-top: 0;
     padding: 0 1rem;
 }
 
+.header .row .header-content .ask-question a{
+    font-size: var(--fs24);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    
+
+}
+
+.header .row .header-content .ask-question a:hover{
+    transform: scale(1.1);
+    text-decoration: none;
+}
 
 .header .row .header-content .nav-group ul{
     display: flex;
@@ -188,6 +202,7 @@
 
     .header .row .header-content .ask-question{
         order: 2;
+        text-align: center;
         margin-top: 0;
         padding: 0 1rem;
     }
