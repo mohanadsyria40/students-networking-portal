@@ -1,8 +1,17 @@
 
 
-.left .box .details .sub-details{
+.left .box .details .sub-details-thread{
     display: flex;
     flex-direction: column;
+}
+
+
+.left .box .details {
+    margin-top: 1rem;
+}
+
+.left .box .details h3{
+    font-weight: 500;
 }
 
 
@@ -29,20 +38,31 @@
     justify-content: left;
     flex-direction: column;
 }
-.left .inner-left .details .sub-details{
+
+
+main .left .inner-left .box .details h3.post-title{
+    color: black;
+
+}
+
+.left .inner-left .details .sub-details-posts p a{
+  text-decoration: none;
+}
+
+
+.left .inner-left .details .sub-details-posts{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    justify-content: left;
 
 }
 
 
-.left .inner-left .details .sub-details span{
+.left .inner-left .details .sub-details-posts span{
     font-size: var(--fs14);
 }
 
-.left .inner-left .details .sub-details .question-info{
+.left .inner-left .details .sub-details-posts .question-info{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -51,7 +71,7 @@
 
 
 
-.left .inner-left .box .details .sub-details .btn.btn-red{
+.left .inner-left .box .details .sub-details-posts .btn.btn-red{
     text-decoration: none; 
     font-weight: bolder;
     transition: var(--transition);
@@ -59,7 +79,7 @@
 
 
 
-.left .inner-left .box .details .sub-details .btn.btn-red{
+.left .inner-left .box .details .sub-details-posts .btn.btn-red{
     padding: .7rem 1rem;
     border-radius: .3rem;
     cursor: pointer;

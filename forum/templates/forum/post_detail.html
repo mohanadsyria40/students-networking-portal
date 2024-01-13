@@ -1,0 +1,47 @@
+
+<!-- forum/templates/forum/post_detail.html -->
+{% extends "forum/index.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static '../static/index.css' %}">
+    <link rel="stylesheet" href="{% static '../static/post_detail.css' %}">
+{% endblock style %}
+{% block title %}{{post.title}}{% endblock title %}
+
+{% block left_main_content %}
+<div class="left">
+    <div class="box">
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+        <strong>{{ post.student.username }} -
+            {{ post.timestamp }}</strong>
+            <hr>
+        <p>{{ post.content }}</p><br>
+        
+    </div>
+    </div> 
+    <br/>
+    <h3> Comments ({{post.comment_count}})</h3><br/>
+    {% if not post.comments.all %}
+        No comments yet.. <a href="{% url 'add_comment_to_post' post_id=post.id %}" >Add One</a>
+    {% else %}
+    <a href="{% url 'add_comment_to_post' post_id=post.id %}" class="btn btn-blue">Add one</a>
+    <br/><br/>
+        {% for comment in post.comments.all %}
+        <div class="box">
+            <div class="comment">
+                <strong>{{ comment.student.username }} -
+                    {{ comment.timestamp }}</strong>
+                    <hr>
+                <p>{{ comment.content }}</p><br>
+            </div>
+            {% if comment.student == request_user %}
+                <a href="{% url 'delete_comment' comment_id=comment.id %}" class="btn btn-red">Delete</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+    {% endif %}
+</div>
+{% endblock %}

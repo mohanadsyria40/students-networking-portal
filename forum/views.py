@@ -22,6 +22,12 @@ def forum(request):
 def thread_detail(request, pk):
     thread = get_object_or_404(Thread, pk=pk)
     posts = Post.objects.filter(thread=thread)
+    
+    posts_with_comments = []
+    for post in posts:
+        comments = Comment.objects.filter(post=post)
+        posts_with_comments.append((post, comments))
+        
     return render(request, 'forum/thread_detail.html', {"thread": thread, "posts": posts})
 
 
@@ -69,10 +75,7 @@ def create_post(request):
     )
     
     
-from django.urls import reverse
-
-from django.urls import reverse
-
+@login_required(login_url='users/login')
 def delete_post(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
 
@@ -95,3 +98,51 @@ def delete_post(request, post_pk):
         messages.error(request, 'You do not have permission to delete this post.')
 
     return redirect(redirect_url)
+
+
+
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    comments = Comment.objects.filter(post=post)
+    return render(request, 'forum/post_detail.html',{"post": post , "request_user": request.user, "comments": comments})
+
+    
+    
+# define the view to be validated when comment is initiated
+@login_required(login_url='users/login')
+def add_comment_to_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    
+    if not post.comments_allowed:
+        messages.error(request, 'Comments are not allowed for this post.')
+        return redirect('post_detail', post_id=post.id)
+    
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            # save comment to the database after assigning its fields
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.student = request.user
+            comment.save()
+            messages.success(request, "Your comment was added successfully!")
+            return redirect('post_detail', post_id=post.id)
+        
+    else:
+        form = CommentForm()
+            
+    return render(request, 'forum/add_comment_to_post.html', {"form": form})
+
+
+
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    
+    if comment.student == request.user:
+        comment.delete()
+        messages.success(request, "Comment was successfully deleted!")
+    
+    else:
+        messages.error(request, "You don't have permission to delete this comment")
+    
+    return redirect('post_detail', post_id=comment.post.id)

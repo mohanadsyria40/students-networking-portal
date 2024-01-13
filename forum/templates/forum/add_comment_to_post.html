@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'create_post.css' %}">
+{% endblock style %}
+
+{% block page_content %}
+<main>
+    <section class="post-creation">
+        <div class="container">
+            <div class="row">
+                <form  action="" method="post">
+                    <h2>Add your comment</h2>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <!-- Common Fields for Both Post and Thread -->
+
+                    <div id="button-container">
+                        <button class="btn btn-blue" type="submit" >Add comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock page_content %}
