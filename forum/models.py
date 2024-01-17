@@ -44,10 +44,13 @@ class Post(models.Model):
     
 
 class Comment(models.Model):
-    student = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    student = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='student')
     post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    parent_comment = models.ForeignKey(
+        'self', on_delete=models.CASCADE, null=True, blank=True
+    )
 
     def __str__(self):
         return f'{self.student.username} - {self.content[:20]}'

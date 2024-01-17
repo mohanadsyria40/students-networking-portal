@@ -120,10 +120,18 @@ def add_comment_to_post(request, post_id):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
+            # check
+            parent_comment_id = request.GET.get('parent_comment_id')
+            parent_comment = None
+            if parent_comment_id:
+                parent_comment = get_object_or_404(Comment, pk=parent_comment_id)
+
             # save comment to the database after assigning its fields
             comment = form.save(commit=False)
             comment.post = post
             comment.student = request.user
+            if parent_comment:
+                comment.parent_comment = parent_comment
             comment.save()
             messages.success(request, "Your comment was added successfully!")
             return redirect('post_detail', post_id=post.id)
