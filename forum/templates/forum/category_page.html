@@ -6,24 +6,14 @@
     <link rel="stylesheet" href="{% static '../static/index.css' %}">
     <link rel="stylesheet" href="{% static '../static/thread_detail.css' %}">
 {% endblock style %}
-{% block title %}{{thread.title}}{% endblock title %}
+{% block title %}{{thread.category.name}}{% endblock title %}
 
 {% block left_main_content%}
                 <section class="left">
-                    <div class="box">
-                        <div class="category">Category: <a href="{% url 'category' thread.category.name %}">{{ thread.category }}</a></div>
-                        <div class="details">
-                            <h3><strong>Topic:</strong> {{ thread.title }}</h3>
-                            <div class="sub-details-thread">
-                                <span><strong>By:</strong> {{ thread.student.username }}</span>
-                                <span><strong>Time Opened:</strong> {{ thread.timestamp }}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Display list of posts for the thread -->
+                    <h2>{{cats}}</h2>
+                    <!-- Display list of posts for the category -->
                     <div class="inner-left">
-                        {% for post in posts %}
+                        {% for post in category_posts %}
                             <div class="box">
                                 <div class="details">
                                     <h3 class="post-title">{{ post.title }}</h3>
@@ -46,7 +36,7 @@
                             </div>
                             {% empty %}
                             <div  class="empty">
-                                <p>No questions yet!</p>
+                                <p>No questions for this category yet!</p>
                             </div>
                         
                         {% endfor %}

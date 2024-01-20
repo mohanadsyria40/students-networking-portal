@@ -7,14 +7,20 @@ from django.urls import reverse
 from django.db import models
 
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('forum')
+
+
 class Thread(models.Model):
-    CATEGORY_CHOICES = [
-        ('Academic questions', 'Academic questions'),
-        ('Courses', 'Courses'),
-        ('Registration', 'Registration'),
-        ('Events', 'Events')
-    ]
-    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)    
     title = models.CharField(max_length=255)
     student = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -55,5 +61,3 @@ class Comment(models.Model):
     def __str__(self):
         return f'{self.student.username} - {self.content[:20]}'
 
-    def get_absolute_url(self):
-        return reverse('forum-detail', kwargs={'pk': self.post.thread.forum.pk})

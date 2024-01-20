@@ -54,7 +54,7 @@ def activateEmail(request, user, to_email):
   else:
       messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
 
-
+@user_not_authenticated
 def register(request):
   if request.method == "POST":
     form = StudentRegistrationForm(request.POST)
@@ -194,10 +194,10 @@ def password_reset_request(request):
 
       return redirect('forum')
 
-    #  for key, error in list(form.errors.items()):
-    #         if key == 'captcha' and error[0] == 'This field is required.':
-    #             messages.error(request, "You must pass the reCAPTCHA test")
-    #             continue
+    for key, error in list(form.errors.items()):
+          if key == 'captcha' and error[0] == 'This field is required.':
+              messages.error(request, "You must pass the reCAPTCHA test")
+              continue
 
   form = PasswordResetForm()
   return render(
@@ -236,3 +236,5 @@ def passwordResetConfirm(request, uidb64, token):
 
   messages.error(request, 'Something went wrong, redirecting to the forum page')
   return redirect('forum')
+
+

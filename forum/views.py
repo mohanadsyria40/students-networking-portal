@@ -33,9 +33,8 @@ def thread_detail(request, pk):
 
 @login_required(login_url='users/login')
 def create_post(request):
-      # Replace CombinedForm with the actual combined form you create
-
     if request.method == 'POST':
+        # create an instance from the form with the passed data
         form = PostCreationForm(request.POST)
 
         if form.is_valid():
@@ -55,7 +54,7 @@ def create_post(request):
                 # Use an existing thread
                 existing_thread = get_object_or_404(Thread, pk=thread_choice)
                 post.thread = existing_thread
-
+            
             post.save()
             messages.success(request, "Your question was successfully posted!")
             return redirect(reverse('thread_detail', args=[str(post.thread.pk)]))
@@ -154,3 +153,11 @@ def delete_comment(request, comment_id):
         messages.error(request, "You don't have permission to delete this comment")
     
     return redirect('post_detail', post_id=comment.post.id)
+
+
+
+
+
+def category_view(request, cats):
+    category_posts = Post.objects.filter(thread__category__name=cats)
+    return render(request, 'forum/category_page.html', {"cats": cats, "category_posts": category_posts})
