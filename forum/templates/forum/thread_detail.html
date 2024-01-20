@@ -11,7 +11,7 @@
 {% block left_main_content%}
                 <section class="left">
                     <div class="box">
-                        <div class="category">Category: <a href="{% url 'category' thread.category.name %}">{{ thread.category }}</a></div>
+                        <div class="category">Category: <a href="{% url 'category' thread.category.name|slugify %}">{{ thread.category }}</a></div>
                         <div class="details">
                             <h3><strong>Topic:</strong> {{ thread.title }}</h3>
                             <div class="sub-details-thread">

@@ -10,13 +10,13 @@ from django.contrib import messages
 def forum(request):
     total_posts = Post.objects.count()
     total_members = get_user_model().objects.count()
-    
     threads = Thread.objects.all()
     return render(
         request, "forum/index.html",
         {"threads": threads,
          "total_posts": total_posts,
-         "total_members": total_members})
+         "total_members": total_members,
+         })
 
 
 def thread_detail(request, pk):
@@ -159,5 +159,5 @@ def delete_comment(request, comment_id):
 
 
 def category_view(request, cats):
-    category_posts = Post.objects.filter(thread__category__name=cats)
-    return render(request, 'forum/category_page.html', {"cats": cats, "category_posts": category_posts})
+    category_posts = Post.objects.filter(thread__category__name=cats.replace('-', ' '))
+    return render(request, 'forum/category_page.html', {"cats": cats.title(), "category_posts": category_posts})
