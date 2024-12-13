@@ -1,0 +1,56 @@
+
+<!-- forum/templates/forum/post_detail.html -->
+{% extends "forum/index.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static '../static/index.css' %}">
+    <link rel="stylesheet" href="{% static '../static/post_detail.css' %}">
+{% endblock style %}
+{% block title %}{{post.title}}{% endblock title %}
+
+{% block left_main_content %}
+<div class="left">
+    <div class="box">
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+        <strong>{{ post.student.username }} -
+            {{ post.timestamp }}</strong>
+            <hr>
+        <p>{{ post.content }}</p><br>
+        
+    </div>
+    </div> 
+    <br/>
+    <h3> Comments ({{post.comment_count}})</h3> <i id="toggle-comments" class="fa-solid fa-chevron-down"></i><br/>
+    <div id="comments-container" style="display: none;">
+    {% if not post.comments.all %}
+        No comments yet.. <a href="{% url 'add_comment_to_post' post_id=post.id %}" >Add One</a>
+    {% else %}
+    <a href="{% url 'add_comment_to_post' post_id=post.id %}" class="btn btn-blue">Add one</a>
+    <br/><br/>
+        {% for comment in post.comments.all %}
+        <div class="box   {% if comment.parent_comment %}reply{% endif %}">
+            <div class="comment">
+                <strong>{{ comment.student.username }} -
+                    {{ comment.timestamp }}</strong>
+                    <hr>
+                <div class="comment-content">
+                    <p>{{ comment.content }}</p>
+                    <div>
+                    <a class="btn btn-blue" href="{% url 'add_comment_to_post' post_id=post.id %}?parent_comment_id={{ comment.pk }}">Reply</a>
+                    {% if comment.student == request_user %}
+                    <a href="{% url 'delete_comment' comment_id=comment.id %}" class="btn btn-red">Delete</a>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+
+    {% endif %}
+</div>
+</div>
+<script src="{% static "../static/js/post_detail.js" %}"></script>
+{% endblock %}

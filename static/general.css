@@ -1,0 +1,162 @@
+/* global styling */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --darkBlueColor: #000080;
+    --lightBlueColor: #A4AFF4;
+    --whiteColor: #FFFFFF;
+    --purpleBlueColor: #29315C; 
+    --greenyColor: #3d5c1f;
+    --burnedBrownColor: #b55600;
+    --fs14: 1.4rem;
+    --fs18: 1.8rem;
+    --fs24: 2.4rem;
+    --transition: all .3s ease;
+}
+
+html{
+    font-size: 80%;
+    scroll-behavior: smooth;
+}
+
+
+body{
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    background-color: var(--whiteColor);
+}
+
+
+img{
+    width: 4.0rem;
+    height: 4.0rem;
+}
+
+ul{
+    list-style: none;
+}
+
+
+a{
+    color: var(--darkBlueColor);
+    text-decoration: none; 
+    font-weight: bolder;
+    transition: var(--transition);
+}
+
+button{
+    color: var(--darkBlueColor);
+    text-decoration: none; 
+    font-weight: bolder;
+    transition: var(--transition);
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+
+img{
+    display: block;
+    max-width: 100%;
+}
+
+
+input{
+    border: none;
+    outline: none;
+}
+
+
+input:focus::placeholder{
+    opacity: 0;
+}
+
+
+.btn{
+    padding: .7rem 1rem;
+    border-radius: .3rem;
+    cursor: pointer;
+    font-size: var(--fs14);
+    font-weight: 500;
+    text-align: center;
+    height: 3.6rem;
+}
+
+.btn:hover{
+    text-decoration: none;
+}
+
+.btn-blue{
+    background-color: var(--darkBlueColor);
+    border: 0.1rem solid var(--darkBlueColor);
+    color: white;
+}
+
+.btn-blue:hover{
+    background-color: #FFFFFF;
+    color: var(--darkBlueColor);
+}
+
+
+h1{
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+main{
+    padding: 12rem 0.5rem 2rem 0.5rem;
+}
+
+
+@media (min-width: 768px){
+    main{
+        padding-top:1rem;
+    }
+}
+
+
+
+.container#messages{ 
+    position: relative;
+    margin-bottom: 10px; 
+}
+
+
+.container#messages .message { /* Assuming a container element for messages */
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+    
+.container#messages .message.success {
+    color: #28a745;
+}
+
+.container#messages .message.error {
+    color: #dc3545;
+}
+
+.container#messages .message.info {
+    color: #3498db;
+}
+    
+
+.container#messages .message i#close {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    color: rgba(0, 0, 0, 0.466); /* Text color, you can customize this */
+    padding: 5px 10px;
+    cursor: pointer;
+}

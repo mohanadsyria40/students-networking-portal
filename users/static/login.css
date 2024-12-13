@@ -1,0 +1,160 @@
+
+/* log in and sign-up overlay*/
+.overlay{
+    position: fixed;
+    inset: 0;
+    padding: 0 1.5rem;
+    background-color: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+
+.overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.login{
+    position: relative;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    max-width: 80rem;
+    width: 100%;
+    margin: 4rem auto 1rem;
+    margin-bottom: 25vh;
+    box-shadow: 0 0.5rem 1.5rem 0 rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+
+.login .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+
+.login .top h2{
+    font-size: 2.7rem;
+    color: var(--darkBlueColor);
+}
+
+
+.login .top i{
+    font-size: var(--fs24);
+    color: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+}
+
+
+.login .row .content{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+.login .row .content .login-info{
+    flex: 1;
+}
+
+
+
+.login .row .content .login-info form input:not([type="checkbox"]){
+    display: block;
+    color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.15);
+    border: 0.1rem;
+    border-color: var(--darkBlueColor);
+    border-radius: 0.3rem;
+    font-size: 1.6rem;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    line-height: 1.4;
+}
+
+
+
+.login .row .content .login-info form .form-group{
+    position: relative;
+    margin-top: 0.5rem;
+} 
+
+
+.login .row .content .login-info form .form-group div{
+    position: absolute;
+    border-left: 0.1rem solid rgba(0, 0, 0, 0.35);
+    height: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 0.5rem;
+    padding-left: 1rem;
+    cursor: pointer;
+}
+
+
+.login .row .content .login-info form a{
+    display: block;
+    margin-top: 1rem;
+}
+
+
+.login .row .content .login-info .remember{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.login .row .content .login-info .remember label{
+    color: rgba(0, 0, 0, 0.75);
+}
+
+
+.login .row .content .login-info .btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.login .row .content .login-info .btn-blue{
+    min-width: 8rem;
+    margin-top: 3rem ;
+    width: 100%;
+    transition: var(--transition);
+}
+
+
+.login .row .content .bottom{
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.233);
+    margin-top: 1rem;
+    margin-inline: -1rem;
+    margin-bottom: -1rem;
+}
+
+
+.login .row .content .bottom h4{
+    font-weight: 400;
+}
+
+
+.login .row .content .bottom a{
+    text-transform: capitalize;
+}
+
+
+

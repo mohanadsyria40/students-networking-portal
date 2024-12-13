@@ -1,0 +1,57 @@
+<!-- forum/thread_detail.html -->
+{% extends "forum/index.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static '../static/index.css' %}">
+    <link rel="stylesheet" href="{% static '../static/thread_detail.css' %}">
+{% endblock style %}
+{% block title %}{{thread.title}}{% endblock title %}
+
+{% block left_main_content%}
+                <section class="left">
+                    <div class="box">
+                        <div class="category">Category: <a href="{% url 'category' thread.category.name|slugify %}">{{ thread.category }}</a></div>
+                        <div class="details">
+                            <h3><strong>Topic:</strong> {{ thread.title }}</h3>
+                            <div class="sub-details-thread">
+                                <span><strong>By:</strong> {{ thread.student.username }}</span>
+                                <span><strong>Time Opened:</strong> {{ thread.timestamp }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Display list of posts for the thread -->
+                    <div class="inner-left">
+                        {% for post in posts %}
+                            <div class="box">
+                                <div class="details">
+                                    <h3 class="post-title">{{ post.title }}</h3>
+                                    <div class="sub-details-posts">
+                                        <p><a href="{%url 'post_detail' post_id=post.id %}">{{ post.content }}</a></p>
+                                        <div class="question-info">
+                                            <span>{{ post.student.username }}</span>
+                                            <span>{{ post.timestamp }}</span>
+                                        </div>
+                                        <div>
+                                        {% if post.student == request.user %}
+                                        <form method ="post" action="{% url 'delete_post' post.pk %}">
+                                            {% csrf_token %}
+                                            <button class="btn btn-red" type="submit">Delete</button>
+                                        </form>
+                                        </div>
+                                        {% endif %} 
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div  class="empty">
+                                <p>No questions yet!</p>
+                            </div>
+                        
+                        {% endfor %}
+                        
+                    </div>
+                </section>
+{% endblock left_main_content %}
+   

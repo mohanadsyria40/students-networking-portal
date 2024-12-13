@@ -1,0 +1,98 @@
+
+.post-creation .container .row{
+    margin: 1rem 0;
+    margin-top: 10rem;
+}
+
+
+.post-creation .container .row form{
+    background-color: var(--whiteColor);
+    box-shadow: 0 0.5rem 1.5rem 0 rgba(0, 0, 0, 0.5);
+    padding: 1.2rem;
+    border-radius: 1rem;
+    max-width: 55rem;
+    width: 100%;
+    margin: auto;
+}
+
+
+.post-creation .container .row form h2{
+    font-size: 2.7rem;
+    color: var(--darkBlueColor);
+    margin-bottom: 1.5rem;
+}
+
+
+.post-creation .container .row form .form-group{
+    margin-bottom: 1rem;
+}
+
+
+.post-creation .container .row form input{
+    background-color: rgb(0, 0, 0, 0.15);
+    padding: 1rem 1.5rem;
+    font-size: 1.6rem;
+    color: rgb(0, 0, 0, 0.75);
+    border: 0.1rem;
+    border-radius: 0.3rem;
+    border-color: var(--darkBlueColor);
+    display: block;
+    width: 100%;
+    line-height: 1.4;
+    visibility: visible;
+}
+
+
+
+.post-creation .container .row form .btn{
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.post-creation .container .bottom{
+  text-align: center;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.233);
+  margin-top: 1rem;
+  margin-inline: -1rem;
+  margin-bottom: -1rem;
+}
+
+
+.post-creation .container .bottom h4{
+  font-weight: 400;
+}
+
+
+.post-creation .container .bottom a{
+  text-transform: capitalize;
+}
+
+textarea#id_content {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical; /* Allow vertical resizing of the textarea */
+}
+
+/* Optionally, you can add styles to limit the height of the textarea */
+textarea#id_content {
+  max-height: 200px; /* Adjust the value based on your preference */
+  overflow-y: auto; /* Add a scrollbar when the content exceeds the height */
+}
+
+label{
+  display: block;
+  margin-bottom: 5px;
+}
+
+select, input[type="text"]{
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}

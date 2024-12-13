@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block style%}
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+{% endblock style%}
+
+{% block title %}Your Profile - IsikUnStHub{% endblock title %}
+
+{% block page_content %}
+
+<main>
+    
+        <div class="container">
+            {% if form.errors %}
+                <p id="messages">
+                    There was an error with your info!
+                </p>
+            {% endif %}
+        </div>
+    
+    <section class="profile">
+        <div class="container">
+            <div class="row">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <h2>Edit Profile</h2>
+                        {% for field in form %}
+                            {% if field == form.avatar %}
+                            <div class="form-group">
+                                <label for="{{ form.avatar.id_for_label }}" class="form-label">{{ form.avatar.label }}</label>
+                                <img src="{{ form.instance.avatar.url }}" alt="Avatar" class="avatar-preview">
+                                {{ form.avatar }}
+                            </div>
+                            {% elif  field == form.description %}
+                            <div class="form-group">
+                                <label for="{{ form.description.id_for_label }}" class="form-label">{{ form.description.label }}</label>
+                                {{ form.description }}
+                            </div>
+                            {% else %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                {{ field }}
+                                {{ field.errors }}
+                            </div>
+                            {% endif %}
+
+                        {% endfor %}
+                        <a href="{% url 'password_change' %}"> Change password? </a>
+                    <button type="submit" class="btn btn-blue">Update Profile</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock page_content %}

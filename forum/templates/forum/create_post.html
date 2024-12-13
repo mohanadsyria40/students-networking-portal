@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'create_post.css' %}">
+{% endblock style %}
+
+{% block page_content %}
+<main>
+    <section class="post-creation">
+        <div class="container">
+            <div class="row">
+                <form id="post-form" method="post" enctype="multipart/form-data">
+                    <h2>Ask your question</h2>
+                    {% csrf_token %}
+
+                    <!-- Common Fields for Both Post and Thread -->
+                    <div class="form-group">
+                        <label for="{{ form.content.id_for_label }}" class="form-label">{{ form.content.label }}</label>
+                        {{ form.content }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.title.id_for_label }}" class="form-label">{{ form.title.label }}</label>
+                        {{ form.title }}
+                        {{ form.title.errors }}
+                    </div>
+
+                    <!-- Dropdown for Thread Selection -->
+                    <label for="thread_choice">Select Topic:</label>
+                    <select name="thread_choice" id="id_thread_choice">
+                        <option value="" selected disabled>Select Topic</option>
+                        <option value="new">Create New Topic</option>
+                        {% for thread in threads %}
+                            <option value="{{ thread.id }}">{{ thread.title }}</option>
+                        {% endfor %}
+                    </select>
+                    <div id="new-thread-fields" style="display: none">
+                        <h3>Create New Topic</h3>
+                        <div class="form-group">
+                            <label for="{{ form.thread_title.id_for_label }}" class="form-label">{{ form.thread_title.label }}</label>
+                            {{ form.thread_title }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.category.id_for_label }}" class="form-label">{{ form.category.label }}</label>
+                            {{ form.category }}
+                        </div>
+                    </div>
+
+                    <div id="button-container">
+                        <button class="btn btn-blue" type="submit" id="submit-post">Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="{% static 'js/create_post.js' %}"></script>
+{% endblock page_content %}

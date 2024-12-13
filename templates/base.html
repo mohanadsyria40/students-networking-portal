@@ -1,0 +1,107 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+
+    {% block style %}
+    {% endblock style %}
+    <link rel="stylesheet" href="{% static '../static/header.css' %}">
+    <link rel="stylesheet" href="{% static '../static/footer.css' %}">
+    <link rel="stylesheet" href="{% static '../static/general.css' %}">
+
+    
+    <script src="https://kit.fontawesome.com/afee173c1f.js" crossorigin="anonymous"></script>
+    <title>{% block title %}IsikUnStHub Portal{% endblock title %}</title>
+</head>
+<body id="custom-body">
+    
+    <header class="header" id="header">
+        <div class="logo">
+            <a href={% url 'forum'%}>
+                <img src="{% static '../static/media/new-logo.png' %}" alt="portal logo">
+            </a>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="header-content">
+                    <div class="categories-part">
+                        <button
+                        class="nav-link dropdown-btn btn-blue"
+                        data-dropdown="dropdown2"
+                        aria-expanded="false"
+                        >
+                        <span class="">Categories</span>
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <div id="dropdown2" class="dropdown">
+                        <ul aria-labelledby="categories-title">
+                            {% for category in categories %}
+                            <li>
+                            <a class="dropdown-link" href="{% url 'category' category.name %}">{{category.name}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="nav-group">
+                        <ul>
+                            <li><a href="{% url 'forum' %}"><i class="fa-solid fa-home"></i></a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'profile' username=request.user.username%}">
+                                {{user.username}} <i class="fa fa-user-circle"></i>
+                            </a></li>
+                            <li><a href="{% url 'logout'%}">
+                                Logout <i class="fa-solid fa-sign-in"></i>
+                            </a></li>
+                            {%else%}
+                            <li><a href="{% url 'register'%}">Register <i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="{% url 'login'%}">Login <i class="fa-solid fa-sign-in"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="ask-question">
+                        <a href="{% url 'create_post' %}"> Ask your question </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% if messages %}
+            {% for message in messages %}
+            <div class="container" id="messages">
+                <div class="message {{ message.tags }}">
+                    {{ message|safe }}
+                    <i id="close" class="fa-solid fa-times" onclick="closeMessage(this)" area-hidden="true"></i>
+                </div>
+            </div>
+            {% endfor %}
+    {% endif %}
+    {% block page_content %}
+    {% endblock page_content %}
+    <footer>
+        <div class="container">
+            <ul>
+                <li><a href="#">home</a></li>
+                <li><a href="#">our story</a></li>
+                <li><a href="#">terms of use</a></li>
+                <li><a href="#">privacy policy</a></li>
+                <li><a href="#">help</a></li>
+                <li><a href="#">business directory</a></li>
+                <li><a href="#">contact us</a></li>
+            </ul>
+            <p>This website was created to enhance the student's educational experience,
+                not to help him/her violate any regulation.
+            </p>
+            <p></p>
+            <p></p>
+        </div>
+    </footer>
+
+    <script src="{% static 'index.js' %}">
+    </script>
+</body>
+</html>

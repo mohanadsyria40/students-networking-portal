@@ -1,0 +1,315 @@
+:root{
+    --darkBlueColor: #000080;
+    --lightBlueColor: #A4AFF4;
+    --whiteColor: #FFFFFF;
+    --purpleBlueColor: #29315C; 
+    --greenyColor: #3d5c1f;
+    --burnedBrownColor: #b55600;
+    --fs14: 1.4rem;
+    --fs18: 1.8rem;
+    --fs24: 2.4rem;
+    --transition: all .3s ease;
+}
+
+
+.header{
+    position: relative;
+    background: url(media/Banner.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 10rem;
+}
+
+.header .row{
+    position: absolute;
+    left: 0;
+    /* bottom: 0; */
+    width: 100%;
+    background-color: var(--darkBlueColor);
+}
+
+
+.header .logo{
+    display: flex;
+    justify-content: center;
+}
+
+
+.header .logo img{
+    width: auto;
+    height: 100%;
+}
+
+
+.header .row .header-content{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    z-index: 2;
+    flex-direction: row-reverse;
+}
+
+.header a{
+    color: white;
+}
+
+.header .row .header-content .categories-part{
+    order: 2;
+    flex: 1 1 100%;
+    margin-top: 1rem;
+    padding: 0 1rem;
+
+}
+
+.header .row .header-content .categories-part .form-group{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+
+.header .row .header-content .categories-part .form-group input{
+    height: 4rem;
+    padding-left: 2rem;
+    border-radius: 0.4rem;
+    font-size: var(--fs14);
+    background-color: var(--whiteColor);
+    border: 0.1rem solid var(--lightBlueColor);
+    font-weight: 500;
+    text-align: left;
+    color: black;
+    width: 100%;
+}
+
+
+.header .row .header-content .categories-part .form-group input:focus{
+    background-color: white;
+    color: black;
+}
+
+
+.header .row .header-content .categories-part .form-group input::placeholder{
+    font-weight: 500;
+    color: black;
+    font-size: var(--fs14);
+}
+
+
+.header .row .header-content .categories-part .form-group i{
+    color: var(--darkBlueColor);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs18);
+}
+
+
+.header .row .header-content .nav-group{
+    order: 3;
+}
+
+.header .row .header-content .ask-question{
+    order: 1;
+    text-align: center;
+    flex: 1 1 auto;
+    margin-top: 0;
+    padding: 0 1rem;
+}
+
+.header .row .header-content .ask-question a{
+    font-size: var(--fs24);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    
+
+}
+
+.header .row .header-content .ask-question a:hover{
+    transform: scale(1.1);
+    text-decoration: none;
+}
+
+.header .row .header-content .nav-group ul{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+
+}
+
+
+.header .row .header-content .nav-group ul li a{
+    font-size: var(--fs24);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    
+
+}
+
+
+
+.header .row .header-content .nav-group ul li a:hover{
+    transform: scale(1.1);
+    text-decoration: none;
+}
+
+
+.header .row .header-content .nav-group ul li a span{
+    display: none;
+    font-size: var(--fs24);
+}
+
+
+.header .row .header-content .nav-group ul li.logout a{
+    font-size: var(--fs14);
+    font-weight: 500;
+}
+
+
+.header .row .header-content .nav-group ul li.logout span{
+    color: var(--whiteColor);
+    font-size: var(--fs18);
+    margin-right: 2rem;
+    font-weight: 700;
+}
+
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    min-width: 230px;
+    background-color: var(--darkBlueColor);
+    border-radius: 10px;
+    position: absolute;
+    top: 36px;
+    margin-top: 2rem;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.97) translateX(-5px);
+    transition: 0.1s ease-in-out;
+    box-shadow: var(--shadow);
+}
+  
+.dropdown.active {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1) translateX(5px);
+}
+  
+.dropdown ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.2rem;
+    font-size: var(--fs18);
+}
+  
+.dropdown-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.15rem;
+    font-size: var(--fs18);
+}
+  
+.dropdown-link {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-radius: 7px;
+    transition: 0.1s ease-in-out;
+}
+  
+.dropdown-link p {
+    font-size: 0.8rem;
+    color: var(--medium-grey);
+}
+
+
+
+@media (min-width: 768px){
+    .header .row{
+        bottom: 0;
+        background-color: var(--darkBlueColor);
+    }
+
+    .header .row .header-content{
+        display: flex;
+        align-items: center;
+        padding: 1.4rem 0.5rem;
+    }
+
+    .header .row .header-content .categories-part{
+        order: 3;
+        flex: 1 1 auto;
+        margin-top: 0;
+        padding: 0 1rem;
+    }
+
+    .header .row .header-content .ask-question{
+        order: 2;
+        text-align: center;
+        margin-top: 0;
+        padding: 0 1rem;
+    }
+
+    .header .row .header-content .categories-part .form-group{
+        max-width: 48rem;
+        margin: 1 0 auto;
+    }
+
+    .header .row .header-content .nav-group{
+        order: 1;
+        margin-left: 1.2rem;
+    }
+
+    .header .row .header-content .nav-group ul li a span{
+        display: inline-block;
+        text-transform: capitalize;
+        font-size: var(--fs14);
+        font-weight: 500;
+        color: var(--whiteColor);
+        margin-left: 0.5rem;
+
+    }
+}
+
+@media (max-width: 1100px) {
+
+    .dropdown {
+      display: none;
+      border: none !important;
+      border-radius: 5px;
+      margin-top: 8rem;
+      top: 0;
+      left: 0;
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      box-shadow: none;
+    }
+  
+    .dropdown.active {
+      display: block;
+    }
+  
+    .dropdown ul {
+      padding-left: 0.3rem;
+    }
+
+  
+    .menu-bar > li:not(:last-child) {
+      padding-bottom: 0.5rem;
+      border-bottom: var(--border);
+    }
+  }
+  
